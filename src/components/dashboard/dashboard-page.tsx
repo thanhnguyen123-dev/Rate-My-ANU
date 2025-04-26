@@ -2,9 +2,14 @@
 
 import { api } from "@/trpc/react";
 import { useAuth } from "@/contexts/auth-context";
+
 export default function DashboardPage() {
-  const { data } = api.hello.hello.useQuery();
+  const { data, isLoading } = api.hello.hello.useQuery();
   const { user } = useAuth();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>

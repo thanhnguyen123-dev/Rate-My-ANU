@@ -35,7 +35,7 @@ const signInWithGithub = async () => {
 const signOut = async () => {
   const supabase = await createClient();
   await supabase.auth.signOut();
-  return { success: true };
+  redirect("/");
 }
 
 export { signInWithGoogle, signInWithGithub, signOut };

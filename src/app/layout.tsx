@@ -9,8 +9,8 @@ import { AuthProvider } from "@/contexts/auth-context";
 import SidebarLayout from "@/components/layouts/SidebarLayout";
 
 export const metadata: Metadata = {
-  title: "AI agent",
-  description: "AI agent",
+  title: "Webapp",
+  description: "Webapp",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
