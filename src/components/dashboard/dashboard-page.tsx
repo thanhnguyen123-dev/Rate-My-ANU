@@ -1,21 +1,18 @@
 "use client";
 
+import CourseCard from "@/components/course/course-card";
 import { api } from "@/trpc/react";
-import { useAuth } from "@/contexts/auth-context";
 
-export default function DashboardPage() {
-  const { data, isLoading } = api.hello.hello.useQuery();
-  const { user } = useAuth();
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+const DashboardPage = () => {
+  const { data: courses } = api.course.getCourses.useQuery();
 
   return (
-    <>
-      <p>hello</p>
-      <p>{data}</p>
-      <p>{user?.email}</p>
-    </>
-  );
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {courses?.map((course) => (
+        <CourseCard key={course.courseCode} course={course} />
+      ))}
+    </div>
+  )
 }
+
+export default DashboardPage;
