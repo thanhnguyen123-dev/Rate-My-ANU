@@ -11,9 +11,13 @@ datasource db {
 model Course {
     courseCode     String @id
     name           String
-    description    String?
-    sessions       String[]
+    session        String
+    career         String
+    units          Int
+    modeOfDelivery String
     year           Int
+    description    String[]
+    prerequisites  String[]
     reviews        Review[]
 }
 
