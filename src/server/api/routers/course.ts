@@ -13,7 +13,7 @@ export const courseRouter = createTRPCRouter({
     return courses;
   }),
 
-  getCourseByCode: publicProcedure
+  getReviews: publicProcedure
   .input(z.object({ 
     courseCode: z.string() 
   }))
@@ -21,9 +21,9 @@ export const courseRouter = createTRPCRouter({
     const { courseCode } = input;
     const course = ctx.db.course.findUnique({ 
       where: { courseCode: courseCode },
-      // include: {
-      //   reviews: true
-      // }
+      include: {
+        reviews: true
+      }
     });
     return course;
   })

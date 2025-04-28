@@ -2,8 +2,8 @@ import CourseGrid from "@/components/dashboard/courses-grid";
 
 const page = () => {
   return (
-    <div>page</div>
-  );
+    <CourseGrid />
+  )
 }
 
 export default page;

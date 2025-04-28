@@ -2,13 +2,11 @@
 
 import * as React from "react";
 import {
-  AudioWaveform,
-  Command,
-  GalleryVerticalEnd,
+  BotMessageSquare,
   User,
   CreditCard,
-  FolderDot,
-  FolderGit2
+  Sparkle,
+  MessageCircle
 } from "lucide-react";
 
 import { NavMain } from "@/components/dashboard/nav-main";
@@ -23,41 +21,41 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { NavHome } from "@/components/dashboard/nav-home";
-// Sample data
+
 const data = {
   user: {
     name: "shadcn",
     email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
-  ],
+  // teams: [
+  //   {
+  //     name: "Acme Inc",
+  //     logo: GalleryVerticalEnd,
+  //     plan: "Enterprise",
+  //   },
+  //   {
+  //     name: "Acme Corp.",
+  //     logo: AudioWaveform,
+  //     plan: "Startup",
+  //   },
+  //   {
+  //     name: "Evil Corp.",
+  //     logo: Command,
+  //     plan: "Free",
+  //   },
+  // ],
   navMain: [
     {
-      title: "Workspace",
+      title: "AI chat",
       url: "/",
-      icon: FolderDot,
+      icon: Sparkle,
       isActive: true,
       items: [
         {
           title: "Repository Test",
           url: "/",
-          icon: FolderGit2
+          icon: MessageCircle
         }
       ],
     },
@@ -89,7 +87,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavSettings settings={data.settings} />
       </SidebarContent>
       <SidebarFooter>
-        <TeamSwitcher teams={data.teams} />
+        {/* <TeamSwitcher teams={data.teams} /> */}
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
