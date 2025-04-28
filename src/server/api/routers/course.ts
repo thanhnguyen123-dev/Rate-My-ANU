@@ -4,7 +4,12 @@ import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 export const courseRouter = createTRPCRouter({
   getCourses: publicProcedure
   .query(({ ctx }) => {
-    const courses = ctx.db.course.findMany();
+    const courses = ctx.db.course.findMany({
+      take: 50, // TODO: implement virtualization and infinite scrolling
+      orderBy: {
+        courseCode: "asc"
+      }
+    });
     return courses;
   }),
 

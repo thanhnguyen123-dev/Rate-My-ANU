@@ -1,14 +1,14 @@
 import { HydrateClient } from "@/trpc/server";
 import { createClient } from "@/utils/supabase/server";
 import TryoutButton from "@/components/ui/tryout-button";
-import DashboardPage from "@/components/dashboard/dashboard-page";
+import CoursesGrid from "@/components/dashboard/courses-grid";
 
 export default async function Home() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
   if (user) {
-    return <DashboardPage />
+    return <CoursesGrid />
   }
 
   return (
