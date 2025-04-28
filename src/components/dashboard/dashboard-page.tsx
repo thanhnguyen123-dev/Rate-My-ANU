@@ -9,7 +9,7 @@ const DashboardPage = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {courses?.map((course) => (
-        <CourseCard key={course.courseCode} course={course} />
+        <CourseCard key={course.courseCode} {...course} />
       ))}
     </div>
   )

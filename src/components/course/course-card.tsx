@@ -1,21 +1,63 @@
 "use client";
 
-import { type Course } from "@prisma/client";
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from "@/components/ui/badge";
 import { useRouter } from "next/navigation";
+import { formatSession } from "@/utils/format-session";
 
 interface CourseCardProps {
-  course: Course;
+  courseCode: string;
+  name: string;
+  units: number;
+  career: string;
+  modeOfDelivery: string;
+  session: string;
+  year: number;
 }
 
-const CourseCard = ({ course }: CourseCardProps) => {
+const CourseCard = ({ 
+  courseCode, 
+  name, 
+  units, 
+  session, 
+  year }: CourseCardProps) => {
   const router = useRouter();
+  const handleClickCourseCard = () => {
+    router.push(`/courses/${courseCode}`);
+  }
 
+  const formattedSessions = formatSession(session);
   return (
-    <div>
-      <h2>{course.name}</h2>
-      <p>{course.description}</p>
-    </div>
+    <Card 
+      className="h-full hover:shadow-md transition-shadow duration-200 cursor-pointer" 
+      onClick={handleClickCourseCard}
+    >
+      <CardContent className="pt-6">
+        <div className="space-y-2">
+          <div className="flex items-start justify-between">
+            <Badge variant="outline" className="bg-blue-50 text-blue-700 hover:bg-blue-100">
+              {courseCode}
+            </Badge>
+            <Badge variant="outline" className="bg-gray-50">
+              {units} units
+            </Badge>
+          </div>
+          
+          <h3 className="font-semibold text-lg leading-tight line-clamp-2 h-12">
+            {name}
+          </h3>
+
+          <div className="text-sm text-gray-500 flex gap-2">
+            {formattedSessions.map((session) => (
+              <Badge variant="outline" className="bg-blue-50" key={session}>
+                {session}
+              </Badge>
+            ))}
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   );
-}
+};
 
 export default CourseCard;
