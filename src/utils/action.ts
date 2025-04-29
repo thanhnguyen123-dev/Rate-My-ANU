@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 
 const signInWith = async (provider: Provider) => {
   const supabase = await createClient();
-  const origin = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : process.env.SITE_URL;
+  const origin = process.env.VERCEL_URL ?? process.env.SITE_URL;
 
   const auth_callback_url = `${origin}/auth/callback`;
 
