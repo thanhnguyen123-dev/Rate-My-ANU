@@ -7,6 +7,7 @@ import { TRPCReactProvider } from "@/trpc/react";
 import { createClient } from "@/utils/supabase/server";
 import { AuthProvider } from "@/contexts/auth-context";
 import SidebarLayout from "@/components/layouts/SidebarLayout";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Webapp",
@@ -38,6 +39,7 @@ export default async function RootLayout({
               <>{children}</>
             )}
           </AuthProvider>
+          <Toaster />
         </TRPCReactProvider>
       </body>
     </html>

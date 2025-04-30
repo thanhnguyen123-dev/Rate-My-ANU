@@ -2,17 +2,14 @@
 
 import * as React from "react";
 import {
-  BotMessageSquare,
   User,
   CreditCard,
-  Sparkle,
-  MessageCircle
+  BookOpen,
+  MapPinHouse
 } from "lucide-react";
 
-import { NavMain } from "@/components/dashboard/nav-main";
-import { NavSettings } from "@/components/dashboard/nav-settings";
+import { NavGroup } from "@/components/dashboard/nav-group";
 import { NavUser } from "@/components/dashboard/nav-user";
-import { TeamSwitcher } from "@/components/dashboard/team-switcher";
 import {
   Sidebar,
   SidebarContent,
@@ -28,37 +25,17 @@ const data = {
     email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
-  // teams: [
-  //   {
-  //     name: "Acme Inc",
-  //     logo: GalleryVerticalEnd,
-  //     plan: "Enterprise",
-  //   },
-  //   {
-  //     name: "Acme Corp.",
-  //     logo: AudioWaveform,
-  //     plan: "Startup",
-  //   },
-  //   {
-  //     name: "Evil Corp.",
-  //     logo: Command,
-  //     plan: "Free",
-  //   },
-  // ],
-  navMain: [
+  platforms: [
     {
-      title: "AI chat",
-      url: "/",
-      icon: Sparkle,
-      isActive: true,
-      items: [
-        {
-          title: "Repository Test",
-          url: "/",
-          icon: MessageCircle
-        }
-      ],
+      name: "Courses",
+      url: "/courses",
+      icon: BookOpen,
     },
+    {
+      name: "Residences",
+      url: "/residence",
+      icon: MapPinHouse,
+    }
   ],
   settings: [
     {
@@ -83,11 +60,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavHome />
-        <NavMain items={data.navMain} />
-        <NavSettings settings={data.settings} />
+        <NavGroup items={data.platforms} />
+        <NavGroup items={data.settings} />
       </SidebarContent>
       <SidebarFooter>
-        {/* <TeamSwitcher teams={data.teams} /> */}
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

@@ -25,10 +25,11 @@ model Review {
     id                  String @id @default(uuid())
     title               String?
     content             String @db.Text
-    difficultyRating    Int
-    workloadRating      Int
-    teachingRating      Int
+    difficultyRating    Float
+    workloadRating      Float
+    teachingRating      Float
     courseCode          String
+    isAnonymous         Boolean @default(false)
     course              Course @relation(fields: [courseCode], references: [courseCode], onDelete: Cascade)
     userId              String
     userName            String?

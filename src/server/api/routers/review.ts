@@ -85,6 +85,7 @@ export const reviewRouter = createTRPCRouter({
     const review = await ctx.db.review.create({
       data: {
         courseCode,
+        title,
         content,
         difficultyRating,
         workloadRating,

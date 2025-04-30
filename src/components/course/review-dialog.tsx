@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { api } from "@/trpc/react";
 import { toast } from "sonner";
+import HalfRating from "@/components/ui/hover-rating";
 
 interface ReviewDialogProps {
   isOpen: boolean;
@@ -47,7 +48,7 @@ const ReviewDialog = ({
 
   const { mutate: createReview } = api.review.createReview.useMutation({
     onSuccess: async () => {
-      toast("Comment has been created", {
+      toast.success("Comment has been created", {
         description: "Submitted on behalf of " + userName,
       });
       resetForm();
@@ -62,6 +63,12 @@ const ReviewDialog = ({
   })
 
   const handleSubmit = () => {
+    if (!title) {
+      toast.error("Your title cannot be empty", {
+        description: "Please enter a title",
+      });
+      return;
+    }
     if (!content) {
       toast.error("Your review cannot be empty", {
         description: "Please enter a comment",
@@ -87,6 +94,104 @@ const ReviewDialog = ({
       userAvatarUrl,
     })
   }
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-lg">
+        <DialogHeader>
+          <DialogTitle className="text-xl font-bold">Submit a Review</DialogTitle>
+        </DialogHeader>
+        
+        <div className="space-y-4 py-4">
+          <p className="text-sm text-gray-600">
+            Please write your review below; make sure you read the terms and conditions before posting.
+          </p>
+          
+          <Input
+            placeholder="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          
+          <Textarea
+            placeholder="Feel free to discuss your experience with the assessments, labs, final exams, the difficulty of core concepts/managing workload, your overall enjoyability or how strongly you recommend it as an elective."
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            className="min-h-[150px]"
+          />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <HalfRating />
+              
+              <HalfRating />
+              
+              <HalfRating />
+            </div>
+            
+            <div className="space-y-4">
+              {/* <div>
+                <label className="text-sm font-medium block mb-1">
+                  Grade
+                </label>
+                <Select value={grade} onValueChange={setGrade}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select your grade" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {grades.map((g) => (
+                      <SelectItem key={g} value={g}>
+                        {g}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div> */}
+              
+              {/* <div>
+                <label className="text-sm font-medium block mb-1">
+                  Course Completion
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+                <Input
+                  placeholder="Course Completion (e.g. 18S1, 23T1)"
+                  value={courseCompletion}
+                  onChange={(e) => setCourseCompletion(e.target.value)}
+                />
+              </div> */}
+            </div>
+          </div>
+          
+          <div className="flex items-center space-x-2">
+            <Checkbox 
+              id="anonymous" 
+              checked={isAnonymous} 
+              onCheckedChange={(checked) => setIsAnonymous(!!checked)} 
+            />
+            <label htmlFor="anonymous" className="text-sm font-medium">
+              Display as anonymous
+            </label>
+          </div>
+          
+          <p className="text-xs text-gray-500">
+            By clicking Submit, you have agreed to the{" "}
+            <a href="#" className="text-blue-500 hover:underline">
+              Terms and Conditions
+            </a>
+          </p>
+        </div>
+        
+        <DialogFooter>
+          <Button
+            variant="default"
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
 }
 
 export default ReviewDialog;
