@@ -1,9 +1,15 @@
-import CourseGrid from "@/components/dashboard/courses-grid";
+import CoursePage from "@/components/course/course-page";
 
-const page = () => {
+interface PageProps {
+  params: {
+    course_code: string;
+  };
+}
+
+const Page = ({ params }: PageProps) => {
   return (
-    <div>page</div>
+    <CoursePage courseCode={params.course_code} />
   );
 }
 
-export default page;
+export default Page;
