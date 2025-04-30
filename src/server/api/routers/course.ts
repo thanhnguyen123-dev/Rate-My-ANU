@@ -25,18 +25,4 @@ export const courseRouter = createTRPCRouter({
     return courses;
   }),
 
-  getReviews: publicProcedure
-  .input(z.object({ 
-    courseCode: z.string() 
-  }))
-  .query(({ ctx, input }) => {
-    const { courseCode } = input;
-    const course = ctx.db.course.findUnique({ 
-      where: { courseCode: courseCode },
-      include: {
-        reviews: true
-      }
-    });
-    return course;
-  })
 });
