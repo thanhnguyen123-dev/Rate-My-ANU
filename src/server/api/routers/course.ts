@@ -9,7 +9,7 @@ export const courseRouter = createTRPCRouter({
   .query(({ ctx, input }) => {
     const { courseCode } = input;
     const course = ctx.db.course.findUnique({
-      where: { courseCode: courseCode }
+      where: { courseCode: courseCode },
     });
     return course;
   }),

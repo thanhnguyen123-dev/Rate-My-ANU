@@ -27,16 +27,15 @@ export const reviewRouter = createTRPCRouter({
   createReview: protectedProcedure
   .input(z.object({
     courseCode: z.string(),
-    title: z.string().optional(),
+    title: z.string(),
     content: z.string(),
     difficultyRating: z.number().min(1).max(5),
     workloadRating: z.number().min(1).max(5),
     teachingRating: z.number().min(1).max(5),
-    grade: z.string().optional(),
-    courseCompletion: z.string().optional(),
-    userName: z.string().optional(),
-    userEmail: z.string().optional(),
-    userAvatarUrl: z.string().optional(),
+    userName: z.string(),
+    userEmail: z.string(),
+    userAvatarUrl: z.string(),
+    isAnonymous: z.boolean()
   }))
   .mutation(async ({ ctx, input }) => {
     const { 
@@ -46,41 +45,14 @@ export const reviewRouter = createTRPCRouter({
       difficultyRating, 
       workloadRating, 
       teachingRating,
-      grade,
       userName, 
       userEmail, 
-      userAvatarUrl 
+      userAvatarUrl,
+      isAnonymous
     } = input;
 
     const userId = ctx.user.id;
     
-    // Check if course exists
-    const course = await ctx.db.course.findUnique({
-      where: { courseCode }
-    });
-    
-    if (!course) {
-      throw new TRPCError({
-        code: 'NOT_FOUND',
-        message: `Course with code ${courseCode} not found`,
-      });
-    }
-    
-    // Check if user already has a review for this course
-    const existingReview = await ctx.db.review.findFirst({
-      where: {
-        courseCode,
-        userId
-      }
-    });
-    
-    if (existingReview) {
-      throw new TRPCError({
-        code: 'CONFLICT',
-        message: 'You have already reviewed this course',
-      });
-    }
-
     // Create the review
     const review = await ctx.db.review.create({
       data: {
@@ -93,7 +65,8 @@ export const reviewRouter = createTRPCRouter({
         userId,
         userName,
         userEmail,
-        userAvatarUrl
+        userAvatarUrl,
+        isAnonymous
       }
     });
     
@@ -147,4 +120,5 @@ export const reviewRouter = createTRPCRouter({
       }
     });
   })
+  
 });

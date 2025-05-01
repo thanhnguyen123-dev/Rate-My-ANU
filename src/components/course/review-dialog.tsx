@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { api } from "@/trpc/react";
 import { toast } from "sonner";
-import HalfRating from "@/components/ui/hover-rating";
+import  HoverRating from "@/components/ui/hover-rating";
 
 interface ReviewDialogProps {
   isOpen: boolean;
@@ -33,7 +33,6 @@ const ReviewDialog = ({
   const [difficultyRating, setDifficultyRating] = useState(0);
   const [workloadRating, setWorkloadRating] = useState(0);
   const [teachingRating, setTeachingRating] = useState(0);
-  const [grade, setGrade] = useState("");
   const [isAnonymous, setIsAnonymous] = useState(false);
 
   const resetForm = () => {
@@ -42,7 +41,6 @@ const ReviewDialog = ({
     setDifficultyRating(0);
     setWorkloadRating(0);
     setTeachingRating(0);
-    setGrade("");
     setIsAnonymous(false);
   }
 
@@ -85,19 +83,21 @@ const ReviewDialog = ({
 
     createReview({
       courseCode,
+      title,
       content,
       difficultyRating,
       workloadRating,
       teachingRating,
-      userName,
-      userEmail,
-      userAvatarUrl,
+      userName: isAnonymous ? "Anonymous" : userName,
+      userEmail: isAnonymous ? "Anonymous" : userEmail,
+      userAvatarUrl: isAnonymous ? "Anonymous" : userAvatarUrl,
+      isAnonymous,
     })
   }
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-lg">
+      <DialogContent className="!max-w-xl">
         <DialogHeader>
           <DialogTitle className="text-xl font-bold">Submit a Review</DialogTitle>
         </DialogHeader>
@@ -111,55 +111,35 @@ const ReviewDialog = ({
             placeholder="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            className="max-w-full"
           />
           
           <Textarea
             placeholder="Feel free to discuss your experience with the assessments, labs, final exams, the difficulty of core concepts/managing workload, your overall enjoyability or how strongly you recommend it as an elective."
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="min-h-[150px]"
+            className=""
           />
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <HalfRating />
-              
-              <HalfRating />
-              
-              <HalfRating />
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 place-items-center">
+            <HoverRating 
+              value={difficultyRating} 
+              onChange={setDifficultyRating} 
+              label="Difficulty"
+            />
             
-            <div className="space-y-4">
-              {/* <div>
-                <label className="text-sm font-medium block mb-1">
-                  Grade
-                </label>
-                <Select value={grade} onValueChange={setGrade}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select your grade" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {grades.map((g) => (
-                      <SelectItem key={g} value={g}>
-                        {g}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div> */}
-              
-              {/* <div>
-                <label className="text-sm font-medium block mb-1">
-                  Course Completion
-                  <span className="text-red-500 ml-1">*</span>
-                </label>
-                <Input
-                  placeholder="Course Completion (e.g. 18S1, 23T1)"
-                  value={courseCompletion}
-                  onChange={(e) => setCourseCompletion(e.target.value)}
-                />
-              </div> */}
-            </div>
+            <HoverRating 
+              value={workloadRating} 
+              onChange={setWorkloadRating} 
+              label="Workload" 
+            />
+            
+            <HoverRating 
+              value={teachingRating} 
+              onChange={setTeachingRating} 
+              label="Teaching" 
+            />
+          
           </div>
           
           <div className="flex items-center space-x-2">

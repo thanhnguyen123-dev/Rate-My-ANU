@@ -42,11 +42,6 @@ const data = {
       name: "User Profile",
       url: "/",
       icon: User,
-    },
-    {
-      name: "Billing",
-      url: "/",
-      icon: CreditCard,
     }
   ],
 }

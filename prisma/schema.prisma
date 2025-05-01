@@ -1,55 +1,54 @@
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
-
 model Course {
-    courseCode     String @id
-    name           String
-    session        String
-    career         String
-    units          Int
-    modeOfDelivery String
-    year           Int
-    description    String[]
-    prerequisites  String[]
-    reviews        Review[]
+  courseCode     String   @id
+  name           String
+  session        String
+  career         String
+  units          Int
+  modeOfDelivery String
+  year           Int
+  prerequisites  String[]
+  description    String[]
+  reviews        Review[]
 }
 
 model Review {
-    id                  String @id @default(uuid())
-    title               String?
-    content             String @db.Text
-    difficultyRating    Float
-    workloadRating      Float
-    teachingRating      Float
-    courseCode          String
-    isAnonymous         Boolean @default(false)
-    course              Course @relation(fields: [courseCode], references: [courseCode], onDelete: Cascade)
-    userId              String
-    userName            String?
-    userEmail           String?
-    userAvatarUrl       String?
-    likes               Like[]
-    createdAt           DateTime @default(now())
-    updatedAt           DateTime @updatedAt
+  id               String   @id @default(uuid())
+  content          String
+  difficultyRating Float
+  workloadRating   Float
+  courseCode       String
+  userId           String
+  userName         String?
+  userEmail        String?
+  userAvatarUrl    String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  teachingRating   Float
+  title            String
+  isAnonymous      Boolean  @default(false)
+  likes            Like[]
+  course           Course   @relation(fields: [courseCode], references: [courseCode], onDelete: Cascade)
 
-    @@index([userId])
-    @@index([courseCode])   
+  @@index([userId])
+  @@index([courseCode])
 }
 
 model Like {
-    id                  String @id @default(uuid())
-    reviewId            String
-    review              Review @relation(fields: [reviewId], references: [id], onDelete: Cascade)
-    userId              String
+  id       String @id @default(uuid())
+  reviewId String
+  userId   String
+  review   Review @relation(fields: [reviewId], references: [id], onDelete: Cascade)
 
-    @@unique([reviewId, userId])
-    @@index([userId])
-    @@index([reviewId])
+  @@unique([reviewId, userId])
+  @@index([userId])
+  @@index([reviewId])
 }
