@@ -33,7 +33,7 @@ const data = {
     },
     {
       name: "Residences",
-      url: "/residence",
+      url: "/residences",
       icon: MapPinHouse,
     }
   ],

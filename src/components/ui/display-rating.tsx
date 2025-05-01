@@ -12,7 +12,7 @@ interface DisplayRatingProps {
 export default function DisplayRating({ value, label, color, direction = 'row' }: DisplayRatingProps) {
 
   return (
-    <Stack spacing={1} direction={direction} alignItems={direction === 'column' ? 'center' : 'flex-start'}>
+    <Stack spacing={0.5} direction={direction} alignItems={direction === 'column' ? 'center' : 'flex-start'}>
       <Typography component="legend">{label}</Typography>
       <Rating 
         name="rating" 

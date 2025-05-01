@@ -13,7 +13,7 @@ interface ReviewCardProps {
 const ReviewCard = ({ review }: ReviewCardProps) => {
   const { user } = useAuth();
   const utils = api.useUtils();
-  const [optimisticLike, setOptimisticLike] = useState(review.likes);
+  const [optimisticLikes, setOptimisticLikes] = useState(review.likes);
   // Format date to display
   const formattedDate = review.createdAt 
     ? new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(review.createdAt))
@@ -26,11 +26,11 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
 
   const { mutate: likeReview } = api.review.likeReview.useMutation({
     onMutate: async () => {
-      const userLiked = optimisticLike.some(like => like.userId === user?.id);
+      const userLiked = optimisticLikes.some(like => like.userId === user?.id);
       if (userLiked) {
-        setOptimisticLike(optimisticLike.filter(like => like.userId !== user?.id));
+        setOptimisticLikes(optimisticLikes.filter(like => like.userId !== user?.id));
       } else {
-        setOptimisticLike(prev => [
+        setOptimisticLikes(prev => [
           ...prev,
           { 
             id: "optimistic-like",
@@ -52,7 +52,7 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
     likeReview({ reviewId: review.id });
   }
   return (
-    <div className="border rounded-lg p-5 shadow-sm bg-white">
+    <div className="flex flex-col gap-4 border rounded-lg p-5 shadow-sm bg-white">
       <Stack direction="row" justifyContent="space-between" alignItems="center">
         <h3 className="text-lg font-semibold">{review.title ?? "Untitled Review"}</h3>
         <span className="text-gray-500 text-sm">{formattedDate}</span>
@@ -103,7 +103,7 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
           className={`flex items-center gap-1 text-sm ${hasLiked ? 'text-blue-500' : 'text-gray-500'} hover:text-blue-600`}
         >
           <ThumbsUp size={16} />
-          <span>{optimisticLike.length}</span>
+          <span>{optimisticLikes.length}</span>
         </button>
       </Stack>
     </div>
