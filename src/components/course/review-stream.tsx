@@ -3,6 +3,7 @@ import ReviewDialog from "./review-dialog";
 import { useState } from "react";
 import { useAuth } from "@/contexts/auth-context";
 import { Button } from "@/components/ui/button";
+import ReviewCard from "./review-card";
 interface ReviewStreamProps {
   courseCode: string;
 }
@@ -28,6 +29,11 @@ const ReviewStream = ({ courseCode }: ReviewStreamProps) => {
         userEmail={user?.email ?? ""}
         userAvatarUrl={user?.user_metadata.avatar_url ?? ""}
       />
+      <div className="flex flex-col gap-4">
+        {reviews?.reviews.map((review) => (
+          <ReviewCard key={review.id} review={review} />
+        ))}
+      </div>
     </div>
   )
 }
