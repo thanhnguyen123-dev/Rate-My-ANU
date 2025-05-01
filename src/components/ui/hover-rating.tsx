@@ -15,7 +15,7 @@ export default function HoverRating({ value, onChange, label }: HoverRatingProps
     }
   };
   return (
-    <Stack spacing={1}>
+    <Stack spacing={0.5} alignItems="center">
       {label && (
         <Typography component="legend" className="text-sm font-medium" variant="body2">
           {label}
