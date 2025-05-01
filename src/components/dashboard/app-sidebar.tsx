@@ -26,7 +26,7 @@ const data = {
     avatar: "/avatars/shadcn.jpg",
   },
   platforms: [
-    {
+    { 
       name: "Courses",
       url: "/courses",
       icon: BookOpen,
@@ -39,6 +39,7 @@ const data = {
   ],
   settings: [
     {
+      group: "Settings",
       name: "User Profile",
       url: "/",
       icon: User,
@@ -55,8 +56,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavHome />
-        <NavGroup items={data.platforms} />
-        <NavGroup items={data.settings} />
+        <NavGroup group="Platforms" items={data.platforms} />
+        <NavGroup group="Settings" items={data.settings} />
       </SidebarContent>
       <SidebarFooter>
       </SidebarFooter>

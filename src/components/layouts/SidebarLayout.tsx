@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import {
   SidebarProvider,
   SidebarInset,
@@ -8,6 +9,7 @@ import {
 import { AppSidebar } from "@/components/dashboard/app-sidebar";
 import {
   Breadcrumb,
+  BreadcrumbSeparator,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
@@ -19,6 +21,42 @@ interface SidebarLayoutProps {
 }
 
 export default function SidebarLayout({ children }: SidebarLayoutProps) {
+  const pathname = usePathname();
+  
+  // Generate breadcrumb items based on path
+  const getBreadcrumbItems = () => {
+    const pathSegments = pathname.split('/').filter(Boolean);
+    
+    // Initialize with Home breadcrumb
+    const items = [
+    ];
+    
+    // Add course-related breadcrumbs
+    if (pathSegments.includes('courses')) {
+      // Add Courses breadcrumb
+      items.push(
+        <BreadcrumbItem key="courses" className="hidden md:block">
+          <BreadcrumbLink href="/courses" className="text-base">
+            Courses
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+      );
+      
+      // If we're on a specific course page (e.g., /courses/[course_id])
+      if (pathSegments.length > 1 && pathSegments[0] === 'courses' && pathSegments[1]) {
+        items.push(
+          <BreadcrumbItem key="course-detail" className="hidden md:block">
+            <BreadcrumbLink href={`/courses/${pathSegments[1]}`} className="text-base">
+              {pathSegments[1]}
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+        );
+      }
+    }
+    
+    return items;
+  };
+  
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -29,11 +67,7 @@ export default function SidebarLayout({ children }: SidebarLayoutProps) {
             <Separator orientation="vertical" className="h-4" />
             <Breadcrumb>
               <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="/" className="text-base">
-                    Home
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
+                {getBreadcrumbItems()}
               </BreadcrumbList>
             </Breadcrumb>
           </div>

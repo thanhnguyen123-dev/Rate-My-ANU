@@ -15,19 +15,21 @@ import {
 } from "@/components/ui/sidebar";
 
 export function NavGroup ({
-  items,
+  items, 
+  group,
 }: {
   items: {
     name: string
     url: string
     icon: LucideIcon
   }[]
+  group: string
 }) {
   const { isMobile } = useSidebar()
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Settings</SidebarGroupLabel>
+      <SidebarGroupLabel>{group}</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <SidebarMenuItem key={item.name}>
