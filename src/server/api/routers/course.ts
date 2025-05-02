@@ -17,7 +17,7 @@ export const courseRouter = createTRPCRouter({
   getCourses: publicProcedure
   .query(({ ctx }) => {
     const courses = ctx.db.course.findMany({
-      take: 50, // TODO: implement virtualization and infinite scrolling
+      take: 24, // TODO: implement virtualization and infinite scrolling
       orderBy: {
         courseCode: "asc"
       }

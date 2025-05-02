@@ -22,7 +22,7 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
   const overallRating = ((review.difficultyRating + review.workloadRating + review.teachingRating) / 3);
   
   // Check if current user has liked this review
-  const hasLiked = user?.id && review.likes.some(like => like.userId === user.id);
+  const hasLiked = user?.id && optimisticLikes.some(like => like.userId === user.id);
 
   const { mutate: likeReview } = api.review.likeReview.useMutation({
     onMutate: async () => {

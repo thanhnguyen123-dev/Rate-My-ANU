@@ -147,7 +147,7 @@ const ReviewDialog = ({
               checked={isAnonymous} 
               onCheckedChange={(checked) => setIsAnonymous(!!checked)} 
             />
-            <label htmlFor="anonymous" className="text-sm font-medium">
+            <label role="button" htmlFor="anonymous" className="text-sm font-medium">
               Display as anonymous
             </label>
           </div>
