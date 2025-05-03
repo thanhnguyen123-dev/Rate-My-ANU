@@ -119,6 +119,44 @@ export const reviewRouter = createTRPCRouter({
         userId
       }
     });
+  }),
+
+  deleteReview: protectedProcedure
+  .input(z.object({
+    reviewId: z.string()
+  }))
+  .mutation(async ({ ctx, input }) => {
+    const { reviewId } = input;
+    const userId = ctx.user.id;
+
+    const review = await ctx.db.review.findUnique({
+      where: { id: reviewId }
+    });
+
+    if (!review) {
+      throw new TRPCError({
+        code: 'NOT_FOUND',
+        message: 'Review not found',
+      });
+    }
+
+    if (review.userId !== userId) {
+      throw new TRPCError({
+        code: 'FORBIDDEN',
+        message: 'You are not allowed to delete this review',
+      });
+    }
+
+    await ctx.db.like.deleteMany({
+      where: {
+        reviewId: reviewId
+      }
+    });
+
+    return ctx.db.review.delete({
+      where: {
+        id: reviewId
+      }
+    });
   })
-  
 });
