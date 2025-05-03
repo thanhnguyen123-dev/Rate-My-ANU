@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface DescriptionCardProps {
   courseCode: string;
@@ -26,7 +27,7 @@ const InformationCard = ({
   // Function to determine if description is too long
   // We can define "too long" as more than 3 paragraphs or any paragraph longer than 150 characters
   const isDescriptionLong = description.length > 3 || 
-    description.some(desc => desc.length > 150);
+    description.some(desc => desc.length > 200);
   
   // Get the truncated description (first 2 paragraphs)
   const truncatedDescription = isDescriptionLong 
@@ -76,21 +77,20 @@ const InformationCard = ({
         </div>
       </div>
 
-      {/* Dialog for full description */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="max-w-3xl max-h-[80vh] p-6 pt-6 pb-6 pl-6 pr-2">
-          <DialogHeader className="pr-6">
+        <DialogContent className="max-w-3xl max-h-[80vh]">
+          <DialogHeader>
             <DialogTitle>
               Course Description - {courseCode}
             </DialogTitle>
           </DialogHeader>
-          <div className="overflow-y-auto max-h-[60vh] pr-0 mr-0">
-            <div className="space-y-4 pr-6">
+          <ScrollArea className="max-h-[60vh] w-full">
+            <div className="space-y-4 pr-4">
               {description.map((desc, index) => (
                 <p key={index} className="text-sm">{desc}</p>
               ))}
             </div>
-          </div>
+          </ScrollArea>
         </DialogContent>
       </Dialog>
     </div>
