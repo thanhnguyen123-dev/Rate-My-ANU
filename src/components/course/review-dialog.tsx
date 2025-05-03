@@ -3,15 +3,15 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { api } from "@/trpc/react";
 import { toast } from "sonner";
 import  HoverRating from "@/components/ui/hover-rating";
+import { type Dispatch, type SetStateAction } from "react";
 
 interface ReviewDialogProps {
   isOpen: boolean;
-  onOpenChange: (isOpen: boolean) => void;
+  onOpenChange: Dispatch<SetStateAction<boolean>>;
   courseCode: string
   userName: string;
   userEmail: string;
@@ -45,8 +45,8 @@ const ReviewDialog = ({
 
   const { mutate: createReview } = api.review.createReview.useMutation({
     onSuccess: async () => {
-      toast.success("Comment has been created", {
-        description: "Submitted on behalf of " + userName,
+      toast.success("Review has been created", {
+        description: isAnonymous ? "Submitted anonymously" : `Submitted on behalf of ${userName}`,
       });
       resetForm();
       onOpenChange(false);
@@ -68,14 +68,28 @@ const ReviewDialog = ({
     }
     if (!content) {
       toast.error("Your review cannot be empty", {
-        description: "Please enter a comment",
+        description: "Please enter a review",
       });
       return;
     }
 
-    if (difficultyRating === 0 || workloadRating === 0 || teachingRating === 0) {
-      toast.error("Please rate the course", {
-        description: "Please rate the course on difficulty, workload, and teaching",
+    if (difficultyRating === 0) {
+      toast.error("Your difficulty rating cannot be empty", {
+        description: "Please give a rating for difficulty",
+      });
+      return;
+    }
+    
+    if (workloadRating === 0) {
+      toast.error("Your workload rating cannot be empty", {
+        description: "Please give a rating for workload",
+      });
+      return;
+    }
+
+    if (teachingRating === 0) {
+      toast.error("Your teaching rating cannot be empty", {
+        description: "Please give a rating for teaching",
       });
       return;
     }
@@ -110,7 +124,7 @@ const ReviewDialog = ({
             placeholder="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="max-w-full"
+            // className="max-w-full"
           />
           
           <Textarea
@@ -138,7 +152,6 @@ const ReviewDialog = ({
               onChange={setTeachingRating} 
               label="Teaching" 
             />
-          
           </div>
           
           <div className="flex items-center space-x-2">
@@ -148,7 +161,7 @@ const ReviewDialog = ({
               onCheckedChange={(checked) => setIsAnonymous(!!checked)} 
             />
             <label role="button" htmlFor="anonymous" className="text-sm font-medium">
-              Display as anonymous
+              Display as Anonymous
             </label>
           </div>
           

@@ -43,9 +43,9 @@ export function NavUser() {
     await signOut();
   }
 
-  console.log(user?.user_metadata);
+  // console.log(user?.user_metadata);
 
-  console.log(avatarUrl);
+  // console.log(avatarUrl);
 
   return (
     <SidebarMenu>

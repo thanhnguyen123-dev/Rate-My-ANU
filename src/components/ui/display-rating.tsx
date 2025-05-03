@@ -20,6 +20,7 @@ export default function DisplayRating({ value, label, color, direction = 'row' }
         value={value} 
         readOnly 
         sx={{ color: color }} 
+        size="small"
       />
     </Stack>
   );
