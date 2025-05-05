@@ -4,6 +4,7 @@ interface PageProps {
   params: {
     course_code: string;
   };
+  searchParams?: Record<string, string | string[] | undefined>;
 }
 
 const Page = ({ params }: PageProps) => {
