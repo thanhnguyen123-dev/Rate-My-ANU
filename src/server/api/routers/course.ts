@@ -15,14 +15,35 @@ export const courseRouter = createTRPCRouter({
   }),
 
   getCourses: publicProcedure
-  .query(({ ctx }) => {
-    const courses = ctx.db.course.findMany({
-      take: 24, // TODO: implement virtualization and infinite scrolling
+  .input(
+    z.object({
+      limit: z.number().min(1).max(100).default(24),
+      cursor: z.string().nullish(),
+    })
+  )
+  .query(async ({ ctx, input }) => {
+    const { limit, cursor } = input;
+
+
+    const courses = await ctx.db.course.findMany({
+      take: limit + 1,
       orderBy: {
         courseCode: "asc"
-      }
+      },
+      cursor: cursor ? { courseCode: cursor } : undefined,
+      skip: cursor ? 1 : 0
     });
-    return courses;
+
+    let nextCursor: typeof cursor | undefined;
+    if (courses.length > limit) {
+      const nextItem = courses.pop();
+      nextCursor = nextItem?.courseCode;
+    }
+
+    return {
+      courses,
+      nextCursor
+    };
   }),
 
 });
