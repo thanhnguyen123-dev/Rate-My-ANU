@@ -22,7 +22,7 @@ interface ParticlesProps {
 
 export const Particles: React.FC<ParticlesProps> = ({
   className = "",
-  quantity = 50,
+  quantity = 100,
   staticity = 50,
   ease = 50,
   color = "#3b82f6",

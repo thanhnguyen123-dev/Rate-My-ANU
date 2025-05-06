@@ -35,11 +35,9 @@ export const CallToAction = () => {
           }}
         />
       </div>
-
-  
         <BackgroundGradient
           containerClassName="rounded-2xl max-w-5xl mx-auto shadow-lg"
-          className="py-16 px-8 md:px-16 text-center"
+          className="py-16 px-8 md:px-16 text-center flex flex-col items-center"
         >
           <FadeIn>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
