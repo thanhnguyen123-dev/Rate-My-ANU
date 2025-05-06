@@ -1,6 +1,6 @@
 "use client";
 
-import CourseGrid from "@/components/dashboard/courses-grid";
+import CourseGrid from "@/components/course/courses-grid";
 import SearchBar from "@/components/ui/search-bar";
 import FilterDropdown, { type FilterState } from "@/components/dashboard/filter-dropdown";
 import SortDropdown, { type SortOption, type SortDirection } from "@/components/dashboard/sort-dropdown";

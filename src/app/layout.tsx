@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 
 import { type Metadata } from "next";
-import { Sanchez, Figtree, Lexend } from "next/font/google";
+import { Figtree } from "next/font/google";
 
 import { TRPCReactProvider } from "@/trpc/react";
 import { createClient } from "@/utils/supabase/server";
@@ -10,23 +10,16 @@ import SidebarLayout from "@/components/layouts/SidebarLayout";
 import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
-  title: "Webapp",
-  description: "Webapp",
+  title: "RateMyANU",
+  description: "A social platform that allows ANU students to review courses.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-  const font = Figtree({
-    weight: ['400'],
-    subsets: ['latin'],
-    display: 'auto',
-  })
-
-  const font2 = Sanchez({
-    weight: ['400'],
-    subsets: ['latin'],
-    display: 'auto',
-  })
-
+const font = Figtree({
+  weight: ['400'],
+  subsets: ['latin'],
+  display: 'auto',
+})
 
 export default async function RootLayout({
   children,

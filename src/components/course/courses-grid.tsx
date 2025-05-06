@@ -69,14 +69,12 @@ const CoursesGrid = ({
     void preloadInitialPages();
   }, [courses?.pages.length, hasNextPage, isFetchingNextPage, fetchNextPage, isFetchingInProgress]);
 
-  // Create an array of skeletons when loading
   const renderSkeletons = () => {
     return Array(12).fill(0).map((_, index) => (
       <CourseCardSkeleton key={`skeleton-${index}`} />
     ));
   };
 
-  // Create an array of skeletons for loading next page
   const renderLoadingMoreSkeletons = () => {
     return Array(6).fill(0).map((_, index) => (
       <CourseCardSkeleton key={`loading-more-skeleton-${index}`} />
@@ -87,10 +85,8 @@ const CoursesGrid = ({
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-hidden">
         {isLoading ? (
-          // Initial loading state
           renderSkeletons()
         ) : (
-          // Loaded courses
           <>
             {allCourses.map((course) => (
               <CourseCard 
@@ -107,7 +103,6 @@ const CoursesGrid = ({
           </>
         )}
         
-        {/* Show skeleton loaders when fetching next page */}
         {isFetchingNextPage && renderLoadingMoreSkeletons()}
       </div>
       
