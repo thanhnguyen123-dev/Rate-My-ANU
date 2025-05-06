@@ -1,9 +1,24 @@
-import CourseGrid from "@/components/dashboard/courses-grid";
+"use client";
 
-const page = () => {
+import CourseGrid from "@/components/dashboard/courses-grid";
+import SearchBar from "@/components/ui/search-bar";
+import { Stack } from "@mui/material";
+import { useState } from "react";
+
+const CoursesPage = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
   return (
-    <CourseGrid />
+    <Stack direction="column" spacing={2}>
+      <SearchBar
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      />
+      <CourseGrid 
+        searchQuery={searchQuery}
+      />
+    </Stack>
   )
 }
 
-export default page;
+export default CoursesPage;

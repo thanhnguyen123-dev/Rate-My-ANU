@@ -1,11 +1,13 @@
-"use client";
-
 import CourseCard from "@/components/course/course-card";
 import { useEffect, useRef, useState } from "react";
 import { api } from "@/trpc/react";
 import { useIntersection } from "@/hooks/use-intersection";
 
-const CoursesGrid = () => {
+interface CoursesGridProps {
+  searchQuery: string;
+}
+
+const CoursesGrid = ({ searchQuery }: CoursesGridProps) => {
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const [isFetchingInProgress, setIsFetchingInProgress] = useState(false);
 
@@ -20,10 +22,10 @@ const CoursesGrid = () => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-    isLoading,
   } = api.course.getCourses.useInfiniteQuery(
     {
       limit: 72,
+      searchQuery: searchQuery,
     },
     {
       getNextPageParam: (lastPage) => lastPage.nextCursor,
@@ -54,9 +56,6 @@ const CoursesGrid = () => {
     void preloadInitialPages();
   }, [courses?.pages.length, hasNextPage, isFetchingNextPage, fetchNextPage, isFetchingInProgress]);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div>
