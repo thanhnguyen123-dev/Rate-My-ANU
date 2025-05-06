@@ -1,15 +1,14 @@
+"use client";
+
+import { useParams } from "next/navigation";
 import CoursePage from "@/components/course/course-page";
 
-interface PageProps {
-  params: {
-    course_code: string;
-  };
-  searchParams?: Record<string, string | string[] | undefined>;
-}
-
-const Page = async ({ params }: PageProps) => {
+const Page = () => {
+  const params = useParams();
+  const course_code = params.course_code as string;
+  
   return (
-    <CoursePage courseCode={params.course_code} />
+    <CoursePage courseCode={course_code} />
   );
 }
 
