@@ -12,7 +12,7 @@ const CoursesGrid = () => {
   const isIntersecting = useIntersection(loadMoreRef, {
     threshold: 0,
     root: null,
-    rootMargin: "0px 0px 400px 0px",
+    rootMargin: "0px 0px 2000px 0px",
   });
  
   const { 
@@ -23,7 +23,7 @@ const CoursesGrid = () => {
     isLoading,
   } = api.course.getCourses.useInfiniteQuery(
     {
-      limit: 24,
+      limit: 48,
     },
     {
       getNextPageParam: (lastPage) => lastPage.nextCursor,
@@ -32,19 +32,24 @@ const CoursesGrid = () => {
 
   const allCourses = courses?.pages.flatMap((page) => page.courses) ?? [];
 
-  // Simpler loading logic without scroll position management
   useEffect(() => {
     if (isIntersecting && hasNextPage && !isFetchingNextPage && !isFetchingInProgress) {
       setIsFetchingInProgress(true);
       
       void fetchNextPage().then(() => {
-        // Add delay to prevent multiple rapid fetches
-        setTimeout(() => {
-          setIsFetchingInProgress(false);
-        }, 500);
+        setIsFetchingInProgress(false);
       });
     }
   }, [isIntersecting, hasNextPage, isFetchingNextPage, fetchNextPage, isFetchingInProgress]);
+
+  useEffect(() => {
+    if (courses?.pages.length === 1 && hasNextPage && !isFetchingNextPage && !isFetchingInProgress) {
+      setIsFetchingInProgress(true);
+      void fetchNextPage().then(() => {
+        setIsFetchingInProgress(false);
+      });
+    }
+  }, [courses?.pages.length, hasNextPage, isFetchingNextPage, fetchNextPage, isFetchingInProgress]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -67,12 +72,11 @@ const CoursesGrid = () => {
         ))}
       </div>
       
-      {/* Load more trigger element - smaller and more subtle */}
-      <div ref={loadMoreRef} className="h-12 w-full flex items-center justify-center mt-4">
-        {(isFetchingNextPage || isFetchingInProgress) && 
-          <div className="text-center text-sm text-gray-500">Loading more...</div>
-        }
-      </div>
+      <div 
+        ref={loadMoreRef} 
+        className="h-1 w-full opacity-0 -mt-40"
+        aria-hidden="true"
+      />
     </div>
   );
 }
