@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-
+import {Particles} from "@/components/ui/particles";
 export const LandingHero = () => {
   const [mounted, setMounted] = useState(false);
 
@@ -13,23 +13,7 @@ export const LandingHero = () => {
 
   return (
     <section className="relative pt-36 pb-20 overflow-hidden">
-      {/* Abstract background particles */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        {mounted && Array.from({ length: 40 }).map((_, i) => (
-          <div
-            key={i}
-            className="absolute h-1 w-1 rounded-full bg-primary/40 animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${Math.random() * 10 + 10}s`,
-              opacity: Math.random() * 0.5 + 0.3,
-              transform: `scale(${Math.random() * 2 + 0.5})`,
-            }}
-          />
-        ))}
-      </div>
+      <Particles />
 
       <div className="container relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
