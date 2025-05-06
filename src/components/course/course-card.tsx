@@ -19,8 +19,8 @@ const CourseCard = ({
   courseCode, 
   name, 
   units, 
-  session, 
-  year }: CourseCardProps) => {
+  session
+ }: CourseCardProps) => {
   const router = useRouter();
   const handleClickCourseCard = () => {
     router.push(`/courses/${courseCode}`);
@@ -29,13 +29,14 @@ const CourseCard = ({
   const formattedSessions = formatSession(session);
   return (
     <Card 
-      className="h-full hover:shadow-md transition-shadow duration-200 cursor-pointer" 
+      role="button"
+      className="h-full hover:shadow-md transition-shadow duration-200" 
       onClick={handleClickCourseCard}
     >
-      <CardContent className="pt-6">
+      <CardContent>
         <div className="space-y-2">
           <div className="flex items-start justify-between">
-            <Badge variant="outline" className="bg-blue-50 text-blue-700 hover:bg-blue-100">
+            <Badge variant="outline" className="bg-blue-50 text-blue-700 hover:bg-blue-100 text-sm">
               {courseCode}
             </Badge>
             <Badge variant="outline" className="bg-gray-50">

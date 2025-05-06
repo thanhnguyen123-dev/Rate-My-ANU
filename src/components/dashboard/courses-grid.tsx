@@ -12,7 +12,7 @@ const CoursesGrid = () => {
   const isIntersecting = useIntersection(loadMoreRef, {
     threshold: 0,
     root: null,
-    rootMargin: "0px 0px 2000px 0px",
+    rootMargin: "0px 0px 5000px 0px",
   });
  
   const { 
@@ -23,7 +23,7 @@ const CoursesGrid = () => {
     isLoading,
   } = api.course.getCourses.useInfiniteQuery(
     {
-      limit: 48,
+      limit: 72,
     },
     {
       getNextPageParam: (lastPage) => lastPage.nextCursor,
@@ -43,12 +43,15 @@ const CoursesGrid = () => {
   }, [isIntersecting, hasNextPage, isFetchingNextPage, fetchNextPage, isFetchingInProgress]);
 
   useEffect(() => {
-    if (courses?.pages.length === 1 && hasNextPage && !isFetchingNextPage && !isFetchingInProgress) {
-      setIsFetchingInProgress(true);
-      void fetchNextPage().then(() => {
+    const preloadInitialPages = async () => {
+      if (courses?.pages.length && courses.pages.length < 3 && hasNextPage && !isFetchingNextPage && !isFetchingInProgress) {
+        setIsFetchingInProgress(true);
+        await fetchNextPage();
         setIsFetchingInProgress(false);
-      });
-    }
+      }
+    };
+    
+    void preloadInitialPages();
   }, [courses?.pages.length, hasNextPage, isFetchingNextPage, fetchNextPage, isFetchingInProgress]);
 
   if (isLoading) {
@@ -74,7 +77,8 @@ const CoursesGrid = () => {
       
       <div 
         ref={loadMoreRef} 
-        className="h-1 w-full opacity-0 -mt-40"
+        className="h-1 w-full opacity-0 -mt-[800px]"
+        style={{ position: 'relative', zIndex: -1 }}
         aria-hidden="true"
       />
     </div>
