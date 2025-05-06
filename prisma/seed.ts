@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import fs from "fs";
 import path from "path";
-import { type Course } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -29,7 +28,7 @@ async function seed() {
       
       console.log(`Processing course: ${courseCode}`);
 
-      const courseData: Course = {
+      const courseData = {
         courseCode: course.CourseCode,
         name: course.Name,
         session: course.Session,
