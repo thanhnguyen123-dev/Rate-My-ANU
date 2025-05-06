@@ -4,13 +4,14 @@ import { useRef } from "react";
 import { FadeIn, AnimatedText, Spotlight } from "./utils";
 import { motion, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { MarqueeDemo } from "./marquee";
 
 export const Testimonials = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
   return (
-    <section id="testimonials" className="section-padding overflow-hidden relative bg-muted/30">
+    <section id="testimonials" className="section-padding overflow-hidden relative">
       <div className="absolute inset-0 bg-grid-white/[0.05] -z-10" />
       
       <div className="container mx-auto">
@@ -27,20 +28,11 @@ export const Testimonials = () => {
           </FadeIn>
         </div>
 
-        <div 
-          ref={containerRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
-        >
-          {testimonials.map((testimonial, i) => (
-            <TestimonialCard
-              key={i}
-              testimonial={testimonial}
-              delay={i * 0.1}
-              isInView={isInView}
-            />
-          ))}
-        </div>
+        <MarqueeDemo />
+
       </div>
+
+
     </section>
   );
 };
