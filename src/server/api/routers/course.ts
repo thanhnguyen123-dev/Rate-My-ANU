@@ -28,10 +28,12 @@ export const courseRouter = createTRPCRouter({
         autumn: z.boolean(),
         winter: z.boolean(),
       }).optional(),
+      sortBy: z.enum(["courseCode", "name"]).default("courseCode"),
+      sortDirection: z.enum(["asc", "desc"]).default("asc"),
     })
   )
   .query(async ({ ctx, input }) => {
-    const { limit, cursor, searchQuery, filters } = input;
+    const { limit, cursor, searchQuery, filters, sortBy, sortDirection } = input;
 
     const whereClause: Prisma.CourseWhereInput = {};
     const conditions: Prisma.CourseWhereInput[] = [];
@@ -78,7 +80,7 @@ export const courseRouter = createTRPCRouter({
     const courses = await ctx.db.course.findMany({
       take: limit + 1,
       orderBy: {
-        courseCode: "asc"
+        [sortBy]: sortDirection
       },
       cursor: cursor ? { courseCode: cursor } : undefined,
       skip: cursor ? 1 : 0,

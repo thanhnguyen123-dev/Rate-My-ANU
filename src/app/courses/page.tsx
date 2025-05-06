@@ -53,6 +53,8 @@ const CoursesPage = () => {
       <CourseGrid 
         searchQuery={searchQuery}
         filters={filters}
+        sortBy={sortBy}
+        sortDirection={sortDirection}
       />
     </Stack>
   )

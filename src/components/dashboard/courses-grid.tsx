@@ -4,13 +4,19 @@ import { useEffect, useRef, useState } from "react";
 import { api } from "@/trpc/react";
 import { useIntersection } from "@/hooks/use-intersection";
 import { type FilterState } from "@/components/dashboard/filter-dropdown";
-
+import { type SortOption, type SortDirection } from "@/components/dashboard/sort-dropdown";
 interface CoursesGridProps {
   searchQuery: string;
   filters: FilterState;
+  sortBy: SortOption;
+  sortDirection: SortDirection;
 }
 
-const CoursesGrid = ({ searchQuery, filters }: CoursesGridProps) => {
+const CoursesGrid = ({ 
+  searchQuery, 
+  filters, 
+  sortBy, 
+  sortDirection }: CoursesGridProps) => {
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const [isFetchingInProgress, setIsFetchingInProgress] = useState(false);
 
@@ -31,6 +37,8 @@ const CoursesGrid = ({ searchQuery, filters }: CoursesGridProps) => {
       limit: 72,
       searchQuery: searchQuery,
       filters: filters,
+      sortBy: sortBy,
+      sortDirection: sortDirection,
     },
     {
       getNextPageParam: (lastPage) => lastPage.nextCursor,

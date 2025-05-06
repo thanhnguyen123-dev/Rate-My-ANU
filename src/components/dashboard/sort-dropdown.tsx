@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ArrowUpDown } from "lucide-react";
 
-export type SortOption = "courseCode" | "name" | "units";
+export type SortOption = "courseCode" | "name";
 export type SortDirection = "asc" | "desc";
 
 interface SortDropdownProps {
@@ -24,7 +24,6 @@ interface SortDropdownProps {
 const sortLabels: Record<SortOption, string> = {
   courseCode: "Course Code",
   name: "Course Name",
-  units: "Units",
 };
 
 const SortDropdown = ({ 
