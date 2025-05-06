@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { FadeIn } from "./utils";
 import { motion } from "motion/react";
@@ -7,8 +9,8 @@ export const FooterSection = () => {
   
   return (
     <footer className="bg-card/50 border-t">
-      <div className="container py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-16">
+      <div className="container mx-auto py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-16 max-w-6xl mx-auto">
           <div className="md:col-span-2">
             <FadeIn>
               <Link href="/" className="inline-block">
@@ -80,7 +82,7 @@ export const FooterSection = () => {
           </div>
         </div>
         
-        <div className="mt-12 pt-8 border-t border-border/40">
+        <div className="mt-12 pt-8 border-t border-border/40 max-w-6xl mx-auto">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
               © {currentYear} RateMyANU. All rights reserved.

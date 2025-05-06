@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView, animate } from "motion/react";
+import { motion, useInView, animate } from "framer-motion";
 import { FadeIn, AnimatedText } from "./utils";
 
 export const Stats = () => {
@@ -9,9 +9,9 @@ export const Stats = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   
   return (
-    <section id="stats" className="py-20 bg-gradient-to-b from-background to-muted/30">
-      <div className="container">
-        <div className="text-center mb-16">
+    <section id="stats" className="section-padding bg-gradient-to-b from-background to-muted/30">
+      <div className="container mx-auto">
+        <div className="text-center mb-16 max-w-3xl mx-auto">
           <FadeIn>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               <AnimatedText text="RateMyANU By The Numbers" />

@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { FadeIn, AnimatedText, Spotlight } from "./utils";
-import { motion, useInView } from "motion/react";
+import { motion, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const Testimonials = () => {
@@ -10,11 +10,11 @@ export const Testimonials = () => {
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
   return (
-    <section id="testimonials" className="py-20 overflow-hidden relative bg-muted/30">
+    <section id="testimonials" className="section-padding overflow-hidden relative bg-muted/30">
       <div className="absolute inset-0 bg-grid-white/[0.05] -z-10" />
       
-      <div className="container max-w-6xl">
-        <div className="text-center mb-16">
+      <div className="container mx-auto">
+        <div className="text-center mb-16 max-w-3xl mx-auto">
           <FadeIn>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               <AnimatedText text="What Students Are Saying" />
@@ -29,7 +29,7 @@ export const Testimonials = () => {
 
         <div 
           ref={containerRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
         >
           {testimonials.map((testimonial, i) => (
             <TestimonialCard

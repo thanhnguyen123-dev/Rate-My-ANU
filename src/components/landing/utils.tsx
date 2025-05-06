@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { useInView, motion, useAnimation, type Variants } from "motion/react";
+import { useInView, motion, useAnimation, type Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const BackgroundGradient = ({

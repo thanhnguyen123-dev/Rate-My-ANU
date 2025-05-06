@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { FadeIn, BackgroundGradient } from "./utils";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 export const CallToAction = () => {
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="section-padding relative overflow-hidden">
       {/* Animated background blobs */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <motion.div
@@ -36,9 +36,9 @@ export const CallToAction = () => {
         />
       </div>
 
-      <div className="container max-w-5xl relative">
+      <div className="container mx-auto">
         <BackgroundGradient
-          containerClassName="rounded-2xl"
+          containerClassName="rounded-2xl max-w-5xl mx-auto"
           className="py-16 px-8 md:px-16 text-center"
         >
           <FadeIn>

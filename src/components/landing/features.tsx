@@ -1,14 +1,16 @@
+"use client";
+
 import { FadeIn, AnimatedText, TracingBeam } from "./utils";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const Features = () => {
   return (
-    <section id="features" className="py-20 overflow-hidden relative">
+    <section id="features" className="section-padding overflow-hidden relative">
       <div className="absolute inset-0 bg-grid-white/[0.05] -z-10" />
       
-      <div className="container">
-        <div className="text-center mb-16">
+      <div className="container mx-auto">
+        <div className="text-center mb-16 max-w-3xl mx-auto">
           <FadeIn>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               <AnimatedText text="Everything You Need to Choose the Right Courses" />

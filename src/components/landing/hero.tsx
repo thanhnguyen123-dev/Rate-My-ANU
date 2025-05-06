@@ -1,37 +1,31 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { FadeIn, AnimatedText, BackgroundGradient } from "./utils";
-import { motion } from "motion/react";
+import { useState, useEffect } from "react";
 
 export const LandingHero = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <section className="relative pt-36 pb-20 overflow-hidden">
       {/* Abstract background particles */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        {Array.from({ length: 40 }).map((_, i) => (
-          <motion.div
+        {mounted && Array.from({ length: 40 }).map((_, i) => (
+          <div
             key={i}
-            className="absolute h-1 w-1 rounded-full bg-primary/40"
-            initial={{
-              x: Math.random() * 100 - 50 + "%",
-              y: Math.random() * 100 - 50 + "%",
+            className="absolute h-1 w-1 rounded-full bg-primary/40 animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${Math.random() * 10 + 10}s`,
               opacity: Math.random() * 0.5 + 0.3,
-              scale: Math.random() * 2 + 0.5,
-            }}
-            animate={{
-              x: [
-                Math.random() * 100 - 50 + "%",
-                Math.random() * 100 - 50 + "%",
-              ],
-              y: [
-                Math.random() * 100 - 50 + "%",
-                Math.random() * 100 - 50 + "%",
-              ],
-            }}
-            transition={{
-              duration: Math.random() * 20 + 20,
-              repeat: Infinity,
-              repeatType: "reverse",
+              transform: `scale(${Math.random() * 2 + 0.5})`,
             }}
           />
         ))}
@@ -41,54 +35,42 @@ export const LandingHero = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="flex flex-col gap-6 max-w-xl">
             <div className="mb-4">
-              <FadeIn from="left">
-                <motion.div 
-                  className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors bg-background/10 text-foreground border-primary/20"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <span className="flex h-1.5 w-1.5 rounded-full bg-primary mr-1.5"></span>
-                  <span>Australia&apos;s #1 University Review Platform</span>
-                </motion.div>
-              </FadeIn>
+              <div 
+                className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors bg-background/10 text-foreground border-primary/20 opacity-0 ${mounted ? 'animate-fadeIn' : ''}`}
+                style={{ animationDelay: "0.3s" }}
+              >
+                <span className="flex h-1.5 w-1.5 rounded-full bg-primary mr-1.5"></span>
+                <span>Australia&apos;s #1 University Review Platform</span>
+              </div>
             </div>
 
-            <FadeIn from="left">
+            <div className={`opacity-0 ${mounted ? 'animate-fadeInLeft' : ''}`}>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-4">
-                <AnimatedText text="Find Your Perfect Course at ANU" />
+                Find Your Perfect Course at ANU
               </h1>
-            </FadeIn>
+            </div>
 
-            <FadeIn delay={0.4}>
+            <div className={`opacity-0 ${mounted ? 'animate-fadeIn' : ''}`} style={{ animationDelay: "0.4s" }}>
               <p className="text-lg text-foreground/80 leading-relaxed">
                 Real student reviews, authentic experiences, and course ratings all in one place.
                 Discover the best classes, avoid the worst, and make informed decisions about your education.
               </p>
-            </FadeIn>
+            </div>
 
             <div className="flex flex-wrap gap-4 mt-6">
-              <FadeIn delay={0.6}>
+              <div className={`opacity-0 ${mounted ? 'animate-fadeIn' : ''}`} style={{ animationDelay: "0.6s" }}>
                 <Link href="/auth/signup">
                   <Button size="lg" className="group relative overflow-hidden bg-primary hover:bg-primary">
                     <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-600 to-primary transition-transform group-hover:translate-x-0 -translate-x-full duration-300"></span>
                     <span className="relative flex items-center gap-2">
                       Get Started
-                      <motion.svg
+                      <svg
                         width="16"
                         height="16"
                         viewBox="0 0 16 16"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
-                        className="relative"
-                        initial={{ x: 0 }}
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ 
-                          repeat: Infinity, 
-                          repeatType: "loop", 
-                          duration: 2,
-                          repeatDelay: 1 
-                        }}
+                        className="relative animate-bounce-x"
                       >
                         <path
                           fillRule="evenodd"
@@ -102,44 +84,40 @@ export const LandingHero = () => {
                           d="M8.46967 1.46967C8.76256 1.17678 9.23744 1.17678 9.53033 1.46967L15.5303 7.46967C15.8232 7.76256 15.8232 8.23744 15.5303 8.53033L9.53033 14.5303C9.23744 14.8232 8.76256 14.8232 8.46967 14.5303C8.17678 14.2374 8.17678 13.7626 8.46967 13.4697L13.9393 8L8.46967 2.53033C8.17678 2.23744 8.17678 1.76256 8.46967 1.46967Z"
                           fill="currentColor"
                         />
-                      </motion.svg>
+                      </svg>
                     </span>
                   </Button>
                 </Link>
-              </FadeIn>
+              </div>
               
-              <FadeIn delay={0.7}>
+              <div className={`opacity-0 ${mounted ? 'animate-fadeIn' : ''}`} style={{ animationDelay: "0.7s" }}>
                 <Link href="/courses">
                   <Button variant="outline" size="lg" className="border-primary/30">
                     Browse Courses
                   </Button>
                 </Link>
-              </FadeIn>
+              </div>
             </div>
 
-            <FadeIn delay={0.8}>
-              <div className="mt-6 flex items-center gap-2 text-sm text-foreground/70">
-                <div className="flex -space-x-1 overflow-hidden">
-                  {[1, 2, 3, 4].map((i) => (
-                    <motion.div 
-                      key={i}
-                      className="inline-block h-6 w-6 rounded-full ring-2 ring-background"
-                      style={{
-                        backgroundColor: `hsl(${210 + i * 30}, 70%, 60%)`,
-                      }}
-                      initial={{ x: -10, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: 0.9 + i * 0.1 }}
-                    />
-                  ))}
-                </div>
-                <span>Joined by <span className="font-semibold text-foreground">2,000+</span> ANU students</span>
+            <div className={`mt-6 flex items-center gap-2 text-sm text-foreground/70 opacity-0 ${mounted ? 'animate-fadeIn' : ''}`} style={{ animationDelay: "0.8s" }}>
+              <div className="flex -space-x-1 overflow-hidden">
+                {[1, 2, 3, 4].map((i) => (
+                  <div 
+                    key={i}
+                    className={`inline-block h-6 w-6 rounded-full ring-2 ring-background opacity-0 ${mounted ? 'animate-fadeIn' : ''}`}
+                    style={{
+                      backgroundColor: `hsl(${210 + i * 30}, 70%, 60%)`,
+                      animationDelay: `${0.9 + i * 0.1}s`
+                    }}
+                  />
+                ))}
               </div>
-            </FadeIn>
+              <span>Joined by <span className="font-semibold text-foreground">2,000+</span> ANU students</span>
+            </div>
           </div>
 
-          <FadeIn from="right" delay={0.2}>
-            <BackgroundGradient className="p-1 rounded-2xl">
+          <div className={`opacity-0 ${mounted ? 'animate-fadeInRight' : ''}`} style={{ animationDelay: "0.2s" }}>
+            <div className="p-1 rounded-2xl relative bg-gradient-to-tr from-primary/20 via-transparent to-primary/20">
               <div className="relative h-[500px] w-full overflow-hidden rounded-2xl bg-background">
                 {/* University campus illustration/mockup */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb),0.1),transparent_70%)]" />
@@ -154,19 +132,14 @@ export const LandingHero = () => {
                     { course: "MATH1013", title: "Mathematics", rating: 4.3, row: "5/7", col: "1/4" },
                     { course: "POLS1002", title: "Political Science", rating: 4.0, row: "5/7", col: "4/7" },
                   ].map((item, index) => (
-                    <motion.div
+                    <div
                       key={index}
-                      className="bg-card/70 backdrop-blur p-3 rounded-lg flex flex-col justify-between border border-border/40"
-                      style={{ gridRow: item.row, gridColumn: item.col }}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ 
-                        delay: 0.4 + index * 0.1,
-                        type: "spring",
-                        stiffness: 260,
-                        damping: 20
+                      className={`bg-card/70 backdrop-blur p-3 rounded-lg flex flex-col justify-between border border-border/40 opacity-0 ${mounted ? 'animate-fadeInUp hover:translate-y-[-5px]' : ''} transition-transform duration-200`}
+                      style={{ 
+                        gridRow: item.row, 
+                        gridColumn: item.col,
+                        animationDelay: `${0.4 + index * 0.1}s` 
                       }}
-                      whileHover={{ y: -5, transition: { duration: 0.2 } }}
                     >
                       <div>
                         <div className="text-xs font-medium text-primary mb-1">{item.course}</div>
@@ -190,12 +163,12 @@ export const LandingHero = () => {
                         </div>
                         <span className="text-xs ml-1">{item.rating}</span>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </div>
-            </BackgroundGradient>
-          </FadeIn>
+            </div>
+          </div>
         </div>
       </div>
     </section>
