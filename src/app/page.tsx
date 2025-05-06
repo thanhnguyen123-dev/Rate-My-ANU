@@ -1,8 +1,12 @@
-import { HydrateClient } from "@/trpc/server";
 import { createClient } from "@/utils/supabase/server";
-import TryoutButton from "@/components/ui/tryout-button";
-import CoursesGrid from "@/components/dashboard/courses-grid";
 import { redirect } from "next/navigation";
+import { LandingHero } from "@/components/landing/hero";
+import { Features } from "@/components/landing/features";
+import { Testimonials } from "@/components/landing/testimonials";
+import { Stats } from "@/components/landing/stats";
+import { CallToAction } from "@/components/landing/cta";
+import { NavigationBar } from "@/components/landing/navigation";
+import { FooterSection } from "@/components/landing/footer";
 
 export default async function Home() {
   const supabase = await createClient();
@@ -13,12 +17,17 @@ export default async function Home() {
   }
 
   return (
-    <HydrateClient>
-      <main className="flex min-h-screen flex-col gap-2 items-center justify-center">
-        <p>Landing page</p>
-        <TryoutButton />
-      </main>
-    </HydrateClient>
-  );
   
+    <div className="flex flex-col min-h-screen overflow-hidden">
+      <NavigationBar />
+      <main>
+        <LandingHero />
+        <Features />
+        <Testimonials />
+        <Stats />
+        <CallToAction />
+      </main>
+      <FooterSection />
+    </div>
+  );
 }
