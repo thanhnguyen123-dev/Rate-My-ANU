@@ -1,4 +1,5 @@
 import CourseCard from "@/components/course/course-card";
+import CourseCardSkeleton from "@/components/course/course-card-skeleton";
 import { useEffect, useRef, useState } from "react";
 import { api } from "@/trpc/react";
 import { useIntersection } from "@/hooks/use-intersection";
@@ -22,6 +23,7 @@ const CoursesGrid = ({ searchQuery }: CoursesGridProps) => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
+    isLoading,
   } = api.course.getCourses.useInfiniteQuery(
     {
       limit: 72,
@@ -56,22 +58,46 @@ const CoursesGrid = ({ searchQuery }: CoursesGridProps) => {
     void preloadInitialPages();
   }, [courses?.pages.length, hasNextPage, isFetchingNextPage, fetchNextPage, isFetchingInProgress]);
 
+  // Create an array of skeletons when loading
+  const renderSkeletons = () => {
+    return Array(12).fill(0).map((_, index) => (
+      <CourseCardSkeleton key={`skeleton-${index}`} />
+    ));
+  };
+
+  // Create an array of skeletons for loading next page
+  const renderLoadingMoreSkeletons = () => {
+    return Array(6).fill(0).map((_, index) => (
+      <CourseCardSkeleton key={`loading-more-skeleton-${index}`} />
+    ));
+  };
 
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-hidden">
-        {allCourses.map((course) => (
-          <CourseCard 
-            key={course?.courseCode}
-            courseCode={course?.courseCode ?? ""}
-            name={course?.name ?? ""}
-            units={course?.units ?? 0}
-            career={course?.career ?? ""}
-            modeOfDelivery={course?.modeOfDelivery ?? ""}
-            session={course?.session ?? ""}
-            year={course?.year ?? 0}
-          />
-        ))}
+        {isLoading ? (
+          // Initial loading state
+          renderSkeletons()
+        ) : (
+          // Loaded courses
+          <>
+            {allCourses.map((course) => (
+              <CourseCard 
+                key={course?.courseCode}
+                courseCode={course?.courseCode ?? ""}
+                name={course?.name ?? ""}
+                units={course?.units ?? 0}
+                career={course?.career ?? ""}
+                modeOfDelivery={course?.modeOfDelivery ?? ""}
+                session={course?.session ?? ""}
+                year={course?.year ?? 0}
+              />
+            ))}
+          </>
+        )}
+        
+        {/* Show skeleton loaders when fetching next page */}
+        {isFetchingNextPage && renderLoadingMoreSkeletons()}
       </div>
       
       <div 

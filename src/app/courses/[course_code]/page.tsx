@@ -7,7 +7,7 @@ interface PageProps {
   searchParams?: Record<string, string | string[] | undefined>;
 }
 
-const Page = ({ params }: PageProps) => {
+const Page = async ({ params }: PageProps) => {
   return (
     <CoursePage courseCode={params.course_code} />
   );

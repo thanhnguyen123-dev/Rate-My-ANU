@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
-import { Prisma } from "@prisma/client";
+import { type Prisma } from "@prisma/client";
 export const courseRouter = createTRPCRouter({
   getCourse: publicProcedure
   .input(z.object({
