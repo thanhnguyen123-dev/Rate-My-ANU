@@ -36,9 +36,9 @@ export const CallToAction = () => {
         />
       </div>
 
-      <div className="container mx-auto">
+  
         <BackgroundGradient
-          containerClassName="rounded-2xl max-w-5xl mx-auto"
+          containerClassName="rounded-2xl max-w-5xl mx-auto shadow-lg"
           className="py-16 px-8 md:px-16 text-center"
         >
           <FadeIn>
@@ -90,7 +90,7 @@ export const CallToAction = () => {
             </p>
           </FadeIn>
         </BackgroundGradient>
-      </div>
+      
     </section>
   );
 }; 

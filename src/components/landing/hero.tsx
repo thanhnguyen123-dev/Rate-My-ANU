@@ -4,14 +4,17 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import {Particles} from "@/components/ui/particles";
+import Image from "next/image";
+import { ContainerTextFlipDemo } from "./flip-text";
 export const LandingHero = () => {
   const [mounted, setMounted] = useState(false);
+  const IMAGE_SIZE = 30;
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  return (
+  return ( 
     <section className="relative pt-36 pb-20 overflow-hidden">
       <Particles />
 
@@ -29,9 +32,10 @@ export const LandingHero = () => {
             </div>
 
             <div className={`opacity-0 ${mounted ? 'animate-fadeInLeft' : ''}`}>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-4">
+              {/* <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-4">
                 Find Your Perfect Course at ANU
-              </h1>
+              </h1> */}
+              <ContainerTextFlipDemo/>
             </div>
 
             <div className={`opacity-0 ${mounted ? 'animate-fadeIn' : ''}`} style={{ animationDelay: "0.4s" }}>
@@ -83,20 +87,45 @@ export const LandingHero = () => {
               </div>
             </div>
 
-            <div className={`mt-6 flex items-center gap-2 text-sm text-foreground/70 opacity-0 ${mounted ? 'animate-fadeIn' : ''}`} style={{ animationDelay: "0.8s" }}>
-              <div className="flex -space-x-1 overflow-hidden">
-                {[1, 2, 3, 4].map((i) => (
-                  <div 
-                    key={i}
-                    className={`inline-block h-6 w-6 rounded-full ring-2 ring-background opacity-0 ${mounted ? 'animate-fadeIn' : ''}`}
-                    style={{
-                      backgroundColor: `hsl(${210 + i * 30}, 70%, 60%)`,
-                      animationDelay: `${0.9 + i * 0.1}s`
-                    }}
-                  />
-                ))}
-              </div>
-              <span>Joined by <span className="font-semibold text-foreground">2,000+</span> ANU students</span>
+            <div className={`mt-6 flex items-center gap-8 text-sm text-foreground/70 opacity-0 ${mounted ? 'animate-fadeIn' : ''}`} style={{ animationDelay: "0.8s" }}>
+              <span>Built with</span>
+              <Image 
+                src="/nextjs-icon.svg" 
+                alt="ANU Logo" 
+                width={IMAGE_SIZE} 
+                height={IMAGE_SIZE} /
+              >
+              <Image 
+                src="/react.svg" 
+                alt="ANU Logo" 
+                width={IMAGE_SIZE} 
+                height={IMAGE_SIZE} /
+              >
+              <Image 
+                src="/trpc.svg" 
+                alt="ANU Logo" 
+                width={IMAGE_SIZE} 
+                height={IMAGE_SIZE} /
+              >
+              <Image 
+                src="/supabase.svg" 
+                alt="ANU Logo" 
+                width={IMAGE_SIZE} 
+                height={IMAGE_SIZE} /
+              >
+              <Image 
+                src="/prisma.svg" 
+                alt="ANU Logo" 
+                width={IMAGE_SIZE} 
+                height={IMAGE_SIZE} /
+              >
+              <Image 
+                src="/tailwindcss-icon.svg" 
+                alt="ANU Logo" 
+                width={IMAGE_SIZE} 
+                height={IMAGE_SIZE} /
+              >
+              
             </div>
           </div>
 

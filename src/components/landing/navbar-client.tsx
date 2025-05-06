@@ -37,8 +37,7 @@ export default function NavbarClient({ items }: { items: { name: string; link: s
         <NavbarLogo />
         <NavItems items={items} />
         <div className="ml-auto flex items-center gap-2">
-          <NavbarButton href="/auth/login" variant="secondary">Log In</NavbarButton>
-          <NavbarButton href="/auth/signup" variant="primary">Sign Up</NavbarButton>
+          <NavbarButton href="/login" variant="primary">Login</NavbarButton>
         </div>
       </NavBody>
       
