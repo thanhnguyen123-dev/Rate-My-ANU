@@ -3,12 +3,14 @@ import CourseCardSkeleton from "@/components/course/course-card-skeleton";
 import { useEffect, useRef, useState } from "react";
 import { api } from "@/trpc/react";
 import { useIntersection } from "@/hooks/use-intersection";
+import { type FilterState } from "@/components/dashboard/filter-dropdown";
 
 interface CoursesGridProps {
   searchQuery: string;
+  filters: FilterState;
 }
 
-const CoursesGrid = ({ searchQuery }: CoursesGridProps) => {
+const CoursesGrid = ({ searchQuery, filters }: CoursesGridProps) => {
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const [isFetchingInProgress, setIsFetchingInProgress] = useState(false);
 
@@ -28,6 +30,7 @@ const CoursesGrid = ({ searchQuery }: CoursesGridProps) => {
     {
       limit: 72,
       searchQuery: searchQuery,
+      filters: filters,
     },
     {
       getNextPageParam: (lastPage) => lastPage.nextCursor,

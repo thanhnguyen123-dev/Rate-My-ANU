@@ -18,6 +18,7 @@ model Course {
   prerequisites  String[]
   description    String[]
   reviews        Review[]
+  filters        String[]
 }
 
 model Review {

@@ -12,7 +12,7 @@ const SearchBar = ({ searchQuery, setSearchQuery }: SearchBarProps) => {
   };
 
   return (
-    <div className="relative w-1/2">
+    <div className="relative w-1/2 max-w-2xl">
       <input
         type="text"
         placeholder="Search courses..."
