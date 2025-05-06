@@ -47,3 +47,9 @@ yarn-error.log*
 
 # ignore files in cursor
 .cursor/rules
+
+# ignore prisma seed
+prisma/seed.ts
+
+# ignore data folder
+src/data

@@ -11,21 +11,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
-import { signInWithGoogle, signInWithGithub } from "@/utils/action";
-const LoginForm = ({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<"div">) => {
+import { signInWithGoogle } from "@/utils/action";
+const LoginForm = () => {
   const handleGoogleLogin = async () => {
     await signInWithGoogle();
   };
-  const handleGithubLogin = async () => {
-    await signInWithGithub();
-  };
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className="flex flex-col gap-6">
       <Card>
         <CardHeader className="text-center">
           <CardTitle className="text-xl">Welcome back</CardTitle>
@@ -37,15 +30,6 @@ const LoginForm = ({
           <form>
             <div className="grid gap-6">
               <div className="flex flex-col gap-4">
-                {/* <Button 
-                  variant="outline" 
-                  className="w-full cursor-pointer" 
-                  onClick={handleGoogleLogin}
-                  type="button"
-                >
-                  <FcGoogle/>
-                  Continue with Google
-                </Button> */}
                 <Button
                   variant="outline"
                   className="w-full cursor-pointer"
@@ -97,10 +81,10 @@ const LoginForm = ({
           </form>
         </CardContent>
       </Card>
-      {/* <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary  ">
+      <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary  ">
         By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
         and <a href="#">Privacy Policy</a>.
-      </div> */}
+      </div>
     </div>
   );
 }
