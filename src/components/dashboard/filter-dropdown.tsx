@@ -37,7 +37,7 @@ const sessionLabels: Record<keyof FilterState, string> = {
 const FilterDropdown = ({ filters, onFilterChange, activeFiltersCount }: FilterDropdownProps) => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex items-center gap-2 px-3 py-2 text-sm border rounded-md hover:bg-gray-100">
+      <DropdownMenuTrigger className="flex items-center gap-2 px-4 h-10 text-sm border rounded-full hover:bg-gray-100">
         <SlidersHorizontal className="w-4 h-4" />
         Filters
         {activeFiltersCount > 0 && (
