@@ -34,7 +34,7 @@ export const NavigationBar = () => {
       <div className="container flex items-center justify-between">
         <FadeIn from="left" delay={0.3}>
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-blue-500 text-transparent bg-clip-text">
+            <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-amber-500 text-transparent bg-clip-text">
               RateMyANU
             </span>
           </Link>
@@ -63,7 +63,7 @@ export const NavigationBar = () => {
           <FadeIn delay={0.8}>
             <Link href="/auth/signup">
               <Button className="group relative overflow-hidden">
-                <span className="absolute inset-0 bg-gradient-to-r from-primary to-blue-500 group-hover:translate-x-full transition-transform duration-300"></span>
+                <span className="absolute inset-0 bg-gradient-to-r from-primary to-amber-500 group-hover:translate-x-full transition-transform duration-300"></span>
                 <span className="relative">Sign Up</span>
               </Button>
             </Link>

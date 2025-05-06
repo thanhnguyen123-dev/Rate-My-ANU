@@ -58,12 +58,12 @@ export const CallToAction = () => {
                   className="w-full relative overflow-hidden group"
                 >
                   <motion.span 
-                    className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-600 to-primary transition-transform -translate-x-full group-hover:translate-x-0 duration-300"
+                    className="absolute inset-0 w-full h-full bg-gradient-to-r from-amber-600 to-primary transition-transform -translate-x-full group-hover:translate-x-0 duration-300"
                     initial={{ x: "-100%" }}
                     animate={{ x: "-100%" }}
                     whileHover={{ x: "0%" }}
                   />
-                  <span className="relative">
+                  <span className="relative text-white">
                       Get Started
                   </span>
                 </Button>

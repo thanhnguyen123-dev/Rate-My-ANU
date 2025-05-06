@@ -15,7 +15,7 @@ export const FooterSection = () => {
           <div className="md:col-span-2">
             <FadeIn>
               <Link href="/" className="inline-block">
-                <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-blue-500 text-transparent bg-clip-text">
+                <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-amber-500 text-transparent bg-clip-text">
                   RateMyANU
                 </span>
               </Link>
@@ -56,30 +56,6 @@ export const FooterSection = () => {
               <FooterLink href="/terms">Terms</FooterLink>
               <FooterLink href="/cookie-policy">Cookie Policy</FooterLink>
             </ul>
-            
-            <div className="mt-8">
-              <FooterHeading>Join Us</FooterHeading>
-              <div className="mt-4 flex gap-3">
-                <Link href="/login">
-                  <motion.div
-                    className="rounded-md px-3.5 py-1.5 text-sm border border-input bg-background hover:bg-accent hover:text-accent-foreground"
-                    whileHover={{ y: -2 }}
-                    transition={{ type: "spring", stiffness: 400 }}
-                  >
-                    Login
-                  </motion.div>
-                </Link>
-                <Link href="/login">
-                  <motion.div
-                    className="rounded-md px-3.5 py-1.5 text-sm bg-primary text-primary-foreground hover:bg-primary/90"
-                    whileHover={{ y: -2 }}
-                    transition={{ type: "spring", stiffness: 400 }}
-                  >
-                    Sign Up
-                  </motion.div>
-                </Link>
-              </div>
-            </div>
           </div>
         </div>
         

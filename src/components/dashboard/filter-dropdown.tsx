@@ -41,7 +41,7 @@ const FilterDropdown = ({ filters, onFilterChange, activeFiltersCount }: FilterD
         <SlidersHorizontal className="w-4 h-4" />
         Filters
         {activeFiltersCount > 0 && (
-          <span className="flex items-center justify-center w-5 h-5 text-xs text-white bg-blue-500 rounded-full">
+          <span className="flex items-center justify-center w-5 h-5 text-xs text-white bg-amber-500 rounded-full">
             {activeFiltersCount}
           </span>
         )}

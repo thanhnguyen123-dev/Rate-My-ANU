@@ -18,7 +18,7 @@ const SearchBar = ({ searchQuery, setSearchQuery }: SearchBarProps) => {
         placeholder="Search for a course..."
         value={searchQuery}
         onChange={handleSearch}
-        className="w-full h-10 px-4 pl-12 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        className="w-full h-10 px-4 pl-12 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
         aria-label="Search courses"
       />
       <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />

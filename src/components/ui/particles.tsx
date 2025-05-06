@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 type Particle = {
   x: number;
@@ -25,7 +25,7 @@ export const Particles: React.FC<ParticlesProps> = ({
   quantity = 100,
   staticity = 50,
   ease = 50,
-  color = "#3b82f6",
+  color = "#CD9933",
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);

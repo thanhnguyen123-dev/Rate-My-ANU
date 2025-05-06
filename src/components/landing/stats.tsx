@@ -184,7 +184,7 @@ const stats: Stat[] = [
     icon: UserIcon,
   },
   {
-    value: 350,
+    value: 2916,
     label: "ANU Courses Covered",
     icon: CourseIcon,
   },

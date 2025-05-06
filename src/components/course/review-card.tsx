@@ -167,7 +167,7 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
         <button 
           onClick={handleLike}
           disabled={!user}
-          className={`flex items-center gap-1 text-sm ${hasLiked ? 'text-blue-500' : 'text-gray-500'} hover:text-blue-600`}
+          className={`flex items-center gap-1 text-sm ${hasLiked ? 'text-amber-500' : 'text-gray-500'} hover:text-amber-600`}
         >
           <ThumbsUp size={16} />
           <span>{optimisticLikes.length}</span>

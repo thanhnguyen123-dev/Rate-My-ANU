@@ -167,7 +167,7 @@ const ReviewDialog = ({
           
           <p className="text-xs text-gray-500">
             By clicking Submit, you have agreed to the{" "}
-            <a href="#" className="text-blue-500 hover:underline">
+            <a href="#" className="text-amber-500 hover:underline">
               Terms and Conditions
             </a>
           </p>

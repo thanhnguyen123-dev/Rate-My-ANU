@@ -36,7 +36,7 @@ const CourseCard = ({
       <CardContent>
         <div className="space-y-2">
           <div className="flex items-start justify-between">
-            <Badge variant="outline" className="bg-blue-50 text-blue-700 hover:bg-blue-100 text-sm">
+            <Badge variant="outline" className="bg-amber-50 text-amber-700 hover:bg-amber-100 text-sm">
               {courseCode}
             </Badge>
             <Badge variant="outline" className="bg-gray-50">
@@ -50,7 +50,7 @@ const CourseCard = ({
 
           <div className="text-sm text-gray-500 flex gap-2">
             {formattedSessions.map((session) => (
-              <Badge variant="outline" className="bg-blue-50" key={session}>
+              <Badge variant="outline" className="bg-amber-50" key={session}>
                 {session}
               </Badge>
             ))}

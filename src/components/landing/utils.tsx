@@ -49,7 +49,7 @@ export const BackgroundGradient = ({
       <div
         className="pointer-events-none absolute inset-0 rounded-[--radius] [mask-image:radial-gradient(circle_at_calc(50%+var(--x)*75%)_calc(50%+var(--y)*75%),black_15%,transparent_65%)]"
         style={{
-          background: "radial-gradient(circle at calc(50% + var(--x) * 75%) calc(50% + var(--y) * 75%), rgba(14, 165, 233, 0.15), transparent 40%)",
+          background: "radial-gradient(circle at calc(50% + var(--x) * 75%) calc(50% + var(--y) * 75%), rgba(205, 153, 51, 0.15), transparent 40%)",
         }}
       />
       <Component
@@ -268,7 +268,7 @@ export const Spotlight = ({
         ref={mouseCircleRef}
         className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         style={{
-          background: "radial-gradient(600px circle at var(--x) var(--y), rgba(14, 165, 233, 0.15), transparent 40%)",
+          background: "radial-gradient(600px circle at var(--x) var(--y), rgba(205, 153, 51, 0.15), transparent 40%)",
         }}
       />
     </div>
