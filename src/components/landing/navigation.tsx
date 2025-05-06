@@ -42,19 +42,19 @@ export const NavigationBar = () => {
 
         <div className="hidden md:flex items-center gap-6">
           <FadeIn delay={0.4}>
-            <NavLink href="#features">Features</NavLink>
+            <NavLink href="">Features</NavLink>
           </FadeIn>
           <FadeIn delay={0.5}>
-            <NavLink href="#testimonials">Testimonials</NavLink>
+            <NavLink href="">Testimonials</NavLink>
           </FadeIn>
           <FadeIn delay={0.6}>
-            <NavLink href="#stats">Stats</NavLink>
+            <NavLink href="">Stats</NavLink>
           </FadeIn>
         </div>
 
         <div className="flex items-center gap-3">
           <FadeIn delay={0.7}>
-            <Link href="/auth/login">
+            <Link href="/login">
               <Button variant="outline" className="hidden sm:flex">
                 Log In
               </Button>

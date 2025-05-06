@@ -60,7 +60,7 @@ export const FooterSection = () => {
             <div className="mt-8">
               <FooterHeading>Join Us</FooterHeading>
               <div className="mt-4 flex gap-3">
-                <Link href="/auth/login">
+                <Link href="/login">
                   <motion.div
                     className="rounded-md px-3.5 py-1.5 text-sm border border-input bg-background hover:bg-accent hover:text-accent-foreground"
                     whileHover={{ y: -2 }}
@@ -69,7 +69,7 @@ export const FooterSection = () => {
                     Login
                   </motion.div>
                 </Link>
-                <Link href="/auth/signup">
+                <Link href="/login">
                   <motion.div
                     className="rounded-md px-3.5 py-1.5 text-sm bg-primary text-primary-foreground hover:bg-primary/90"
                     whileHover={{ y: -2 }}

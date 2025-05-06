@@ -5,7 +5,9 @@ import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import {Particles} from "@/components/ui/particles";
 import Image from "next/image";
-import { ContainerTextFlipDemo } from "./flip-text";
+import { ContainerTextFlipDemo } from "@/components/landing/flip-text";
+import { AnimatedGradientTextDemo } from "@/components/dashboard/animated-text-demo";
+
 export const LandingHero = () => {
   const [mounted, setMounted] = useState(false);
   const IMAGE_SIZE = 30;
@@ -23,11 +25,10 @@ export const LandingHero = () => {
           <div className="flex flex-col gap-6 max-w-xl">
             <div className="mb-4">
               <div 
-                className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors bg-background/10 text-foreground border-primary/20 opacity-0 ${mounted ? 'animate-fadeIn' : ''}`}
+                className={`inline-flex items-center px-2.5 py-0.5 text-xs font-semibold transition-colors bg-background/10 text-foreground border-primary/20 opacity-0 ${mounted ? 'animate-fadeIn' : ''}`}
                 style={{ animationDelay: "0.3s" }}
               >
-                <span className="flex h-1.5 w-1.5 rounded-full bg-primary mr-1.5"></span>
-                <span>Australia&apos;s #1 University Review Platform</span>
+                <AnimatedGradientTextDemo/>
               </div>
             </div>
 

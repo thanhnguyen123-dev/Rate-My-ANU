@@ -8,7 +8,6 @@ import { motion } from "framer-motion";
 export const CallToAction = () => {
   return (
     <section className="section-padding relative overflow-hidden">
-      {/* Animated background blobs */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <motion.div
           className="absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-primary/10 blur-3xl"
@@ -53,7 +52,7 @@ export const CallToAction = () => {
           
           <FadeIn delay={0.4}>
             <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto">
-              <Link href="/auth/signup" className="w-full">
+              <Link href="/login" className="w-full">
                 <Button 
                   size="lg" 
                   className="w-full relative overflow-hidden group"
@@ -65,18 +64,8 @@ export const CallToAction = () => {
                     whileHover={{ x: "0%" }}
                   />
                   <span className="relative">
-                    Create Free Account
+                      Get Started
                   </span>
-                </Button>
-              </Link>
-              
-              <Link href="/courses" className="w-full">
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="w-full border-primary/30"
-                >
-                  Browse Courses
                 </Button>
               </Link>
             </div>
@@ -84,7 +73,7 @@ export const CallToAction = () => {
           
           <FadeIn delay={0.6}>
             <p className="text-sm text-foreground/50 mt-6">
-              No credit card required. Start for free.
+              Start your journey to a better academic experience today.
             </p>
           </FadeIn>
         </BackgroundGradient>
