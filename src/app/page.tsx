@@ -4,6 +4,7 @@ import { LandingHero } from "@/components/landing/hero";
 import { Features } from "@/components/landing/features";
 import { Testimonials } from "@/components/landing/testimonials";
 import { Stats } from "@/components/landing/stats";
+import { FAQSection } from "@/components/landing/faq";
 import { CallToAction } from "@/components/landing/cta";
 import { FooterSection } from "@/components/landing/footer";
 import NavbarClient from "@/components/landing/navbar-client";
@@ -16,6 +17,7 @@ export default async function Home() {
     { name: "Features", link: "#features" },
     { name: "Testimonials", link: "#testimonials" },
     { name: "Stats", link: "#stats" },
+    { name: "FAQ", link: "#faq" },
   ];
   if (user) {
     return redirect("/courses");
@@ -31,6 +33,7 @@ export default async function Home() {
         <Features />
         <Testimonials />
         <Stats />
+        <FAQSection />
         <CallToAction />
       </main>
       <FooterSection />
