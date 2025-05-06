@@ -5,7 +5,6 @@ import SearchBar from "@/components/ui/search-bar";
 import FilterDropdown, { type FilterState } from "@/components/dashboard/filter-dropdown";
 import { Stack } from "@mui/material";
 import { useState } from "react";
-import { api } from "@/trpc/react";
 
 const CoursesPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -29,7 +28,7 @@ const CoursesPage = () => {
 
   return (
     <Stack direction="column" spacing={2}>
-      <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
+      <Stack direction="row" justifyContent="space-start" alignItems="center" spacing={2}>
         <SearchBar
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}

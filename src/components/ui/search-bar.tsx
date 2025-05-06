@@ -15,7 +15,7 @@ const SearchBar = ({ searchQuery, setSearchQuery }: SearchBarProps) => {
     <div className="relative w-1/2 max-w-2xl">
       <input
         type="text"
-        placeholder="Search courses..."
+        placeholder="Search for a course..."
         value={searchQuery}
         onChange={handleSearch}
         className="w-full px-4 py-3 pl-12 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
