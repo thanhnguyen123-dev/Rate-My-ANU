@@ -48,7 +48,7 @@ export const LandingHero = () => {
 
             <div className="flex flex-wrap gap-4 mt-6">
               <div className={`opacity-0 ${mounted ? 'animate-fadeIn' : ''}`} style={{ animationDelay: "0.6s" }}>
-                <Link href="/auth/signup">
+                <Link href="/login">
                   <Button size="lg" className="group relative overflow-hidden bg-primary hover:bg-primary">
                     <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-amber-600 to-primary transition-transform group-hover:translate-x-0 -translate-x-full duration-300"></span>
                     <span className="relative flex items-center gap-2 text-white">

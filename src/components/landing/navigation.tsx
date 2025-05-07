@@ -61,7 +61,7 @@ export const NavigationBar = () => {
             </Link>
           </FadeIn>
           <FadeIn delay={0.8}>
-            <Link href="/auth/signup">
+            <Link href="/login">
               <Button className="group relative overflow-hidden">
                 <span className="absolute inset-0 bg-gradient-to-r from-primary to-amber-500 group-hover:translate-x-full transition-transform duration-300"></span>
                 <span className="relative">Sign Up</span>

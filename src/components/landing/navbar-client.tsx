@@ -65,10 +65,10 @@ export default function NavbarClient({ items }: { items: { name: string; link: s
             </a>
           ))}
           <div className="mt-4 flex w-full flex-col gap-2">
-            <NavbarButton href="/auth/login" variant="secondary" className="w-full">
+            <NavbarButton href="/login" variant="secondary" className="w-full">
               Log In
             </NavbarButton>
-            <NavbarButton href="/auth/signup" variant="primary" className="w-full">
+            <NavbarButton href="/login" variant="primary" className="w-full">
               Sign Up
             </NavbarButton>
           </div>
