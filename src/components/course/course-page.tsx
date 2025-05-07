@@ -33,7 +33,7 @@ const CoursePage = ({ courseCode }: { courseCode: string }) => {
           <p className="text-lg font-bold">Reviews</p>
           <Button
             onClick={() => setIsDialogOpen(true)}
-            className="w-24"
+            className="w-24 text-white"
           >
             <SquarePen className="w-4 h-4" />
             Review

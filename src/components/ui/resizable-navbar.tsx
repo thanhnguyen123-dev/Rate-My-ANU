@@ -259,12 +259,12 @@ export const NavbarLogo = () => {
       href="#"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
     >
-      <Image
+      {/* <Image
         src="/favicon.ico"
         alt="logo"
         width={30}
         height={30}
-      />
+      /> */}
       <span className="font-medium text-amber-600 dark:text-amber-500">RateMyANU</span>
     </a>
   );

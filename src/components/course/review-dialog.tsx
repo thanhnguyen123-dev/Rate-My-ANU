@@ -177,6 +177,7 @@ const ReviewDialog = ({
           <Button
             variant="default"
             onClick={handleSubmit}
+            className="text-white"
           >
             Submit
           </Button>
