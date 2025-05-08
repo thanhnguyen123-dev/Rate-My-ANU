@@ -23,7 +23,7 @@ export const Features = () => {
           </FadeIn>
         </div>
 
-        <TracingBeam className="mx-auto max-w-4xl">
+        <TracingBeam className="mx-auto max-w-4xl px-4 md:px-0">
           {features.map((feature, index) => (
             <FeatureCard 
               key={feature.title}
@@ -47,7 +47,7 @@ const FeatureCard = ({
   return (
     <FadeIn
       delay={0.1 * index}
-      className="mb-12 last:mb-0 pl-10 relative before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-px before:bg-gradient-to-b before:from-primary/60 before:via-primary/30 before:to-transparent"
+      className="mb-12 last:mb-0 md:pl-10 relative before:hidden md:before:block before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-px before:bg-gradient-to-b before:from-primary/60 before:via-primary/30 before:to-transparent"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -92,7 +92,7 @@ const FeatureCard = ({
         {/* Background gradient */}
         <div 
           className={cn(
-            "absolute inset-0 rounded-xl opacity-30",
+            "absolute inset-0 rounded-xl opacity-30 hidden md:block",
             index % 2 === 0 
               ? "bg-gradient-to-tr from-primary/5 via-transparent to-primary/5" 
               : "bg-gradient-to-bl from-primary/5 via-transparent to-primary/5"
