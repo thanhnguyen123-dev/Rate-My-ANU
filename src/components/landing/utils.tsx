@@ -197,32 +197,8 @@ export const TracingBeam = ({
   children: React.ReactNode;
   className?: string;
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const trackerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const updateMousePosition = (e: MouseEvent) => {
-      if (!containerRef.current || !trackerRef.current) return;
-      
-      const { top, height } = containerRef.current.getBoundingClientRect();
-      const relativeY = Math.min(Math.max(0, e.clientY - top), height);
-      
-      trackerRef.current.style.top = `${relativeY}px`;
-    };
-    
-    window.addEventListener("mousemove", updateMousePosition);
-    return () => window.removeEventListener("mousemove", updateMousePosition);
-  }, []);
-
   return (
-    <div ref={containerRef} className={cn("relative", className)}>
-      <motion.div
-        ref={trackerRef}
-        className="absolute left-0 h-7 w-1 -translate-x-1/2 rounded-full bg-gradient-to-b from-primary to-primary/20"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.2, delay: 0.5 }}
-      />
+    <div className={cn("relative", className)}>
       {children}
     </div>
   );

@@ -47,7 +47,7 @@ const FeatureCard = ({
   return (
     <FadeIn
       delay={0.1 * index}
-      className="mb-12 last:mb-0 pl-10 relative before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-px before:bg-gradient-to-b before:from-primary/60 before:via-primary/30 before:to-transparent"
+      className="mb-12 last:mb-0 relative"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}

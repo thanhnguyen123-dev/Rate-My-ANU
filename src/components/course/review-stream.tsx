@@ -36,7 +36,7 @@ const ReviewStream = ({ courseCode, isDialogOpen, setIsDialogOpen }: ReviewStrea
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 export default ReviewStream;
