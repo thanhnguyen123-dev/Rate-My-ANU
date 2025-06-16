@@ -9,6 +9,7 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuSeparator
 } from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 import { ArrowUpDown } from "lucide-react";
 
 export type SortOption = "courseCode" | "name";
@@ -19,6 +20,7 @@ interface SortDropdownProps {
   sortDirection: SortDirection;
   onSortChange: (option: SortOption) => void;
   onDirectionChange: (direction: SortDirection) => void;
+  className?: string;
 }
 
 const sortLabels: Record<SortOption, string> = {
@@ -30,16 +32,17 @@ const SortDropdown = ({
   sortBy, 
   sortDirection, 
   onSortChange, 
-  onDirectionChange 
+  onDirectionChange,
+  className
 }: SortDropdownProps) => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex items-center gap-2 px-4 h-10 text-sm border rounded-full hover:bg-gray-100">
+      <DropdownMenuTrigger className={cn("flex items-center justify-center gap-2 px-4 h-10 text-sm border rounded-full hover:bg-gray-100", className)}>
         <ArrowUpDown className="w-4 h-4" />
         Sort
-        <span className="text-gray-500">
+        {/* <span className="text-gray-500 hidden sm:inline">
           ({sortLabels[sortBy]} - {sortDirection === "asc" ? "A→Z" : "Z→A"})
-        </span>
+        </span> */}
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>Sort By</DropdownMenuLabel>

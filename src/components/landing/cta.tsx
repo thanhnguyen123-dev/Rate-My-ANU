@@ -34,10 +34,9 @@ export const CallToAction = () => {
           }}
         />
       </div>
-        <BackgroundGradient
-          containerClassName="rounded-2xl max-w-5xl mx-auto shadow-lg"
-          className="py-16 px-8 md:px-16 text-center flex flex-col items-center"
-        >
+      
+      <div className="rounded-2xl max-w-5xl mx-auto shadow-lg bg-background/80 backdrop-blur-sm">
+        <div className="py-16 px-8 md:px-16 text-center flex flex-col items-center">
           <FadeIn>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Ready to Make Smarter Course Choices?
@@ -64,7 +63,7 @@ export const CallToAction = () => {
                     whileHover={{ x: "0%" }}
                   />
                   <span className="relative text-white">
-                      Get Started
+                    Get Started
                   </span>
                 </Button>
               </Link>
@@ -76,8 +75,8 @@ export const CallToAction = () => {
               Start your journey to a better academic experience today.
             </p>
           </FadeIn>
-        </BackgroundGradient>
-      
+        </div>
+      </div>
     </section>
   );
 }; 

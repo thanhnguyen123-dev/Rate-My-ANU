@@ -9,6 +9,7 @@ import {
   DropdownMenuSeparator
 } from "@/components/ui/dropdown-menu";
 import { SlidersHorizontal } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export interface FilterState {
   semester1: boolean;
@@ -23,6 +24,7 @@ interface FilterDropdownProps {
   filters: FilterState;
   onFilterChange: (key: keyof FilterState) => void;
   activeFiltersCount: number;
+  className?: string;
 }
 
 const sessionLabels: Record<keyof FilterState, string> = {
@@ -34,10 +36,10 @@ const sessionLabels: Record<keyof FilterState, string> = {
   autumn: "Autumn Session",
 };
 
-const FilterDropdown = ({ filters, onFilterChange, activeFiltersCount }: FilterDropdownProps) => {
+const FilterDropdown = ({ filters, onFilterChange, activeFiltersCount, className }: FilterDropdownProps) => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex items-center gap-2 px-4 h-10 text-sm border rounded-full hover:bg-gray-100">
+      <DropdownMenuTrigger className={cn("flex items-center justify-center gap-2 px-4 h-10 text-sm border rounded-full hover:bg-gray-100", className)}>
         <SlidersHorizontal className="w-4 h-4" />
         Filters
         {activeFiltersCount > 0 && (

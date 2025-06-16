@@ -31,22 +31,34 @@ const CoursesPage = () => {
 
   return (
     <Stack direction="column" spacing={2}>
-      <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
+      <Stack 
+        direction={{ xs: 'column', sm: 'row' }} 
+        justifyContent="space-between" 
+        alignItems="center" 
+        spacing={2}
+      >
         <SearchBar
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
+          className="w-full"
         />
-        <Stack direction="row" spacing={2}>
+        <Stack 
+          direction="row" 
+          spacing={2} 
+          className="w-full sm:w-auto"
+        >
           <SortDropdown
             sortBy={sortBy}
             sortDirection={sortDirection}
             onSortChange={setSortBy}
             onDirectionChange={setSortDirection}
+            className="w-full"
           />
           <FilterDropdown
             filters={filters}
             onFilterChange={handleFilterChange}
             activeFiltersCount={activeFiltersCount}
+            className="w-full"
           />
         </Stack>
       </Stack>

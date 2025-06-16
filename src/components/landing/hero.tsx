@@ -33,9 +33,6 @@ export const LandingHero = () => {
             </div>
 
             <div className={`opacity-0 ${mounted ? 'animate-fadeInLeft' : ''}`}>
-              {/* <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-4">
-                Find Your Perfect Course at ANU
-              </h1> */}
               <ContainerTextFlipDemo/>
             </div>
 

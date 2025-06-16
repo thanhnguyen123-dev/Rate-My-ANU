@@ -1,18 +1,20 @@
 import { type Dispatch, type SetStateAction } from "react";
 import { Search } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface SearchBarProps {
   searchQuery: string;
   setSearchQuery: Dispatch<SetStateAction<string>>;
+  className?: string;
 }
 
-const SearchBar = ({ searchQuery, setSearchQuery }: SearchBarProps) => {
+const SearchBar = ({ searchQuery, setSearchQuery, className }: SearchBarProps) => {
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
 
   return (
-    <div className="relative w-1/2 max-w-2xl">
+    <div className={cn("relative w-1/2 max-w-2xl", className)}>
       <input
         type="text"
         placeholder="Search for a course..."
