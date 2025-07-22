@@ -23,6 +23,7 @@ const CoursePage = ({ courseCode }: { courseCode: string }) => {
           name={course?.name ?? ""}
           units={course?.units ?? 0}
           modeOfDelivery={course?.modeOfDelivery ?? ""}
+          session={course?.session ?? ""}
           year={course?.year ?? 0}
           prerequisites={course?.prerequisites ?? []}
           description={course?.description ?? []}

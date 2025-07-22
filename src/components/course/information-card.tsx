@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Badge } from "@/components/ui/badge";
+import { formatSession } from "@/utils/format-session";
+import { Stack } from "@mui/material";
 
 interface DescriptionCardProps {
   courseCode: string;
@@ -9,6 +12,7 @@ interface DescriptionCardProps {
   units: number;
   modeOfDelivery: string;
   year: number;
+  session: string;
   prerequisites: string[];
   description: string[];
 }
@@ -19,6 +23,7 @@ const InformationCard = ({
   units, 
   modeOfDelivery, 
   year, 
+  session,
   prerequisites, 
   description 
 }: DescriptionCardProps) => {
@@ -34,9 +39,17 @@ const InformationCard = ({
     ? description.slice(0, 2) 
     : description;
 
+  const formattedSession = formatSession(session);
+
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-xl font-bold">{name}</h1>
+      <h1 className="text-3xl font-extrabold">{name}</h1>
+      <h2 className="text-xl font-extrabold">{courseCode}</h2>
+      <Stack direction="row" spacing={2}>
+        {formattedSession.map((session) => (
+          <Badge key={session} className="bg-red-400 text-white">{session}</Badge>
+        ))}
+      </Stack>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <p className="text-sm font-medium">Units: <span className="font-normal">{units}</span></p>
